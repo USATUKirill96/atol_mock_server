@@ -1,0 +1,43 @@
+<component name="libraryTable">
+  <library name="tz" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/tz/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/consolidated" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/tz/lib" />
+      <root url="file://$PROJECT_DIR$/deps/tz/priv" />
+      <root url="file://$PROJECT_DIR$/deps/tz/lib" />
+      <root url="file://$PROJECT_DIR$/deps/tz/priv" />
+      <root url="file://$PROJECT_DIR$/deps/tz/lib" />
+      <root url="file://$PROJECT_DIR$/deps/tz/priv" />
+      <root url="file://$PROJECT_DIR$/deps/tz/lib" />
+      <root url="file://$PROJECT_DIR$/deps/tz/priv" />
+      <root url="file://$PROJECT_DIR$/deps/tz/lib" />
+      <root url="file://$PROJECT_DIR$/deps/tz/priv" />
+      <root url="file://$PROJECT_DIR$/deps/tz/lib" />
+      <root url="file://$PROJECT_DIR$/deps/tz/priv" />
+    </SOURCES>
+  </library>
+</component>
