@@ -1,7 +1,6 @@
 defmodule ApiWeb.SettingsController do
   use ApiWeb, :controller
 
-
   def index(conn, _params) do
 
     settings = Settings.get()

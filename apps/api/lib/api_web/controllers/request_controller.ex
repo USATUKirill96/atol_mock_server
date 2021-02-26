@@ -29,7 +29,7 @@ defmodule ApiWeb.RequestController do
     end
   end
 
-  def keys(%{"request" => %{"keys" => keys}} = params) do keys end
+  def keys(%{"request" => %{"keys" => keys}}) do keys end
   def name(%{"request" => %{"operator" => %{"name" => name}}}) do name end
 
 end
