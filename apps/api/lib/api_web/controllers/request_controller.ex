@@ -17,6 +17,7 @@ defmodule ApiWeb.RequestController do
       "getFnInfo" -> Atol.get_fn_info(uuid)
       "getDeviceInfo" -> Atol.get_device_info(uuid)
       "getDeviceParameters" -> Atol.get_device_parameters(uuid, keys(params))
+      "setDeviceParameters" -> Atol.set_device_parameters(uuid, device_parameters(params))
       "sell" -> Atol.sell(uuid)
       "sellReturn" -> Atol.sell_return(uuid)
       "continuePrint" -> Atol.continue_print(uuid)
@@ -31,5 +32,6 @@ defmodule ApiWeb.RequestController do
 
   def keys(%{"request" => %{"keys" => keys}}) do keys end
   def name(%{"request" => %{"operator" => %{"name" => name}}}) do name end
+  def device_parameters(%{"request" => %{"deviceParameters" => parameters}}) do parameters end
 
 end

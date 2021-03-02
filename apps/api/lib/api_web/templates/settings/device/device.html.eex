@@ -1,0 +1,20 @@
+<h1>Настройки устройства ККТ </h1>
+<br>
+<%= form_for @conn, Routes.device_path(@conn, :update), [method: :post], fn f -> %>
+<div class="form-group">
+    <label>
+        <h4>Настройки первого кассира</h4>
+        Кассир: <%= text_input f, :cashier, value: @params.cashier %>
+        ИНН: <%= text_input f, :vatin, value: @params.vatin %>
+        <br>
+        <br>
+        <h4>Настройки устройства</h4>
+        Серийный номер: <%= text_input f, :serial, value: @params.serial %>
+
+    </label>
+</div>
+
+<div class="form-group">
+    <%= submit "Сохранить" %>
+</div>
+<% end %>

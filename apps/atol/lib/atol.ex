@@ -4,6 +4,7 @@ defmodule Atol do
   def get_fn_info(uuid) do Atol.Server.cast({:getFnInfo, uuid}) end
   def get_device_info(uuid) do Atol.Server.cast({:getDeviceInfo, uuid}) end
   def get_device_parameters(uuid, keys) do Atol.Server.cast({:getDeviceParameters, {uuid, keys}}) end
+  def set_device_parameters(uuid, parameters) do Atol.Server.cast({:setDeviceParameters, {uuid, parameters}}) end
   def sell(uuid) do Atol.Server.cast({:sell, uuid}) end
   def sell_return(uuid) do Atol.Server.cast({:sellReturn, uuid}) end
   def continue_print(uuid) do Atol.Server.cast({:continuePrint, uuid}) end

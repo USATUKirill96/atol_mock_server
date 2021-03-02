@@ -33,6 +33,11 @@ defmodule Atol.Server do
     {:noreply, state}
   end
 
+  def handle_cast({:setDeviceParameters, {uuid, parameters}}, state) do
+    Atol.Device.set_parameters(uuid, parameters)
+    {:noreply, state}
+  end
+
   def handle_cast({:sell, uuid}, state) do
     Atol.Check.sell(uuid)
     {:noreply, state}

@@ -3,7 +3,7 @@
 <%= form_for @conn, Routes.shift_path(@conn, :update), [method: :post], fn f -> %>
 <div class="form-group">
     <label>
-        Имя кассира: <%= text_input f, :operator, value: @settings.operator %>
+        Имя кассира, открывшего смену: <%= text_input f, :operator, value: @settings.operator %>
         Номер смены: <%= text_input f, :number, value: @settings.number %>
         Состояние смены: <%= select f, :state, [{"Открыта", "opened"}, {"Закрыта", "closed"}], value: @settings.state %>
     </label>

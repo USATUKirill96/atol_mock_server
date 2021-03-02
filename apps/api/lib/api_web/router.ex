@@ -24,6 +24,9 @@ defmodule ApiWeb.Router do
 
     get "/shift", Settings.ShiftController, :index
     post "/shift", Settings.ShiftController, :update
+
+    get "/device", Settings.DeviceController, :index
+    post "/device", Settings.DeviceController, :update
   end
 
    scope "/requests", ApiWeb do

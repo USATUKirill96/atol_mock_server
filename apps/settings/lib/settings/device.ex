@@ -1,5 +1,8 @@
 defmodule Settings.Device do
-  defstruct [serial: "00106900000014"]
+  defstruct [
+    serial: "00106900000014",
+    parameters: %{122 => "John Doel", 150 => "7736207543"}
+  ]
 
   alias Settings.{Device, Storage}
   require Logger

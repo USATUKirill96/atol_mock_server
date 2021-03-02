@@ -13,7 +13,8 @@
   <body>
   <nav class="navbar">
       <a class="navbar-link" href="/">Dashboard</a>
-      <a class="navbar-link" href="settings/shift">Смена</a>
+      <a class="navbar-link" href=<%= Routes.shift_path(@conn, :index)%>>Смена</a>
+      <a class="navbar-link" href=<%= Routes.device_path(@conn, :index)%>>Устройство</a>
   </nav>
   <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

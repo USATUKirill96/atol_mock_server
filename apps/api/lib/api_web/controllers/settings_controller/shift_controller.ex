@@ -3,9 +3,7 @@ defmodule ApiWeb.Settings.ShiftController do
 
 
   def index(conn, _params) do
-  IO.puts("indexing")
     settings = Settings.Shift.get()
-  IO.puts("получил настройки")
   conn
     |>render("shift.html", settings: settings)
   end
