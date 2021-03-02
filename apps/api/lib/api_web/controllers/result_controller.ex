@@ -18,7 +18,6 @@ defmodule ApiWeb.ResultController do
 
       answer = %{"results" => [%{
         "status" => "ready",
-        "errorCode" => 0,
         "errorDescription" => "Ошибок нет",
         "result"=> task
       }]

@@ -16,9 +16,14 @@ defmodule ApiWeb.Router do
 
   scope "/", ApiWeb do
     pipe_through :browser
+    get "/", DashboardController, :index
+  end
 
-    get "/", SettingsController, :index
-    post "/", SettingsController, :update, singleton: true
+  scope "/settings", ApiWeb do
+    pipe_through :browser
+
+    get "/shift", Settings.ShiftController, :index
+    post "/shift", Settings.ShiftController, :update
   end
 
    scope "/requests", ApiWeb do

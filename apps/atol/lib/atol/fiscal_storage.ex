@@ -4,16 +4,17 @@ defmodule Atol.FiscalStorage do
 
     #TODO: Костыль, чтобы срок действия был позже текущего значения. Раздуплить даты, поправить
     next_year = Date.utc_today().year + 1
+    parameters = Settings.FiscalStorage.get()
 
-   %{
-   "fnInfo" => %{
+    %{
+    "fnInfo" => %{
       "ffdVersion" => "1.05",
       "fnFfdVersion" => "1.0",
-      "numberOfRegistrations" => 1,
-      "registrationsRemaining" => 29,
-      "serial" => "9999078900008855",
+      "numberOfRegistrations" => parameters.number_of_registrations,
+      "registrationsRemaining" => parameters.registrations_remaining,
+      "serial" => parameters.serial,
       "validityDate" => "#{next_year}-04-15T21:00:00+03:00",
-      "livePhase" => "fiscalMode",
+      "livePhase" => parameters.live_phase,
       "warnings" => %{
         "criticalError" => false,
         "memoryOverflow" => false,
@@ -22,7 +23,7 @@ defmodule Atol.FiscalStorage do
         "resourceExhausted" => false
       }
     }
-   }
+    }
     |>Tasks.add(uuid)
   end
 end

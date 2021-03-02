@@ -13,6 +13,8 @@
       <excludeFolder url="file://$MODULE_DIR$/deps" />
       <excludeFolder url="file://$MODULE_DIR$/doc" />
       <excludeFolder url="file://$MODULE_DIR$/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/assets/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/priv/static" />
     </content>
     <orderEntry type="jdk" jdkName="Elixir 1.11.2-otp-23" jdkType="Elixir SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -11,7 +11,7 @@ defmodule Atol.Check do
       "fiscalReceiptNumber" => :rand.uniform(10000000),
       "fnNumber" => :rand.uniform(10000000),
       "registrationNumber" => "0000000001002292",
-      "shiftNumber" => 12,
+      "shiftNumber" => Settings.Shift.get().number,
       "total" => 500,
       "fnsUrl"=> "www.nalog.ru"
     },

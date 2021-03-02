@@ -2,13 +2,15 @@ defmodule Settings.Application do
   @moduledoc false
 
   use Application
-  alias Settings.Storage.{Memory, Disk}
+  alias Settings.{Storage, Shift, Device, FiscalStorage}
 
   @impl true
   def start(_type, _args) do
     children = [
-      Disk,
-      Memory
+      Storage,
+      Shift,
+      Device,
+      FiscalStorage
     ]
 
     opts = [strategy: :one_for_one, name: Settings.Supervisor]

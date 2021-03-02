@@ -22,11 +22,7 @@ erl_crash.dump
 # Temporary files for e.g. tests
 /tmp
 
-# IDE
 .idea
-
-# settings database
 disk_storage
-
-#dependencies lock
 mix.lock
+atol_server.iml
