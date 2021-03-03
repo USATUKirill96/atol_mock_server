@@ -10,7 +10,7 @@ defmodule ApiWeb.Settings.DeviceController do
   end
 
 
-  def update(conn, params) do
+  def create(conn, params) do
     device_parameters = Settings.Device.get().parameters
 
     # Обновить настройки устройства

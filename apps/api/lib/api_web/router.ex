@@ -22,11 +22,9 @@ defmodule ApiWeb.Router do
   scope "/settings", ApiWeb do
     pipe_through :browser
 
-    get "/shift", Settings.ShiftController, :index
-    post "/shift", Settings.ShiftController, :update
+    resources "/shift", Settings.ShiftController, only: [:index, :create]
+    resources "/device", Settings.DeviceController, only: [:index, :create]
 
-    get "/device", Settings.DeviceController, :index
-    post "/device", Settings.DeviceController, :update
   end
 
    scope "/requests", ApiWeb do

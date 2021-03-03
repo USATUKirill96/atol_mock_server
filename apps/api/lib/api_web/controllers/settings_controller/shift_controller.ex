@@ -9,7 +9,7 @@ defmodule ApiWeb.Settings.ShiftController do
   end
 
 
-  def update(conn, params) do
+  def create(conn, params) do
 
     # Сохранить настройки
     params

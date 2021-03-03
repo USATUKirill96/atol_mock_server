@@ -1,6 +1,6 @@
 <h1>Настройки устройства ККТ </h1>
 <br>
-<%= form_for @conn, Routes.device_path(@conn, :update), [method: :post], fn f -> %>
+<%= form_for @conn, Routes.device_path(@conn, :create), [method: :post], fn f -> %>
 <div class="form-group">
     <label>
         <h4>Настройки первого кассира</h4>
