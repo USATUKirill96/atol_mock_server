@@ -10,21 +10,16 @@ defmodule ApiWeb.Settings.ShiftController do
 
 
   def update(conn, params) do
+
+    # Сохранить настройки
     params
-    |>to_struct()
+    |>Settings.Shift.new()
     |>Settings.Shift.update()
 
+    # Вернуть ответ пользователю
     conn
     |>put_flash(:info, "Настройки сохранены")
     |>redirect(to: "/settings/shift")
-  end
-
-  defp to_struct(settings) do
-    %Settings.Shift{
-      operator: settings["operator"],
-      number: settings["number"],
-      state: settings["settings"]
-    }
   end
 
 end

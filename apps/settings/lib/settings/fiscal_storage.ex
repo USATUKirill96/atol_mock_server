@@ -9,6 +9,8 @@ defmodule Settings.FiscalStorage do
   alias Settings.{FiscalStorage, Storage}
   require Logger
   use Agent
+  use ExConstructor
+
 
   @key :fiscal_storage
 
@@ -16,7 +18,7 @@ defmodule Settings.FiscalStorage do
     storage_data = Storage.call({:get, @key})
     case storage_data do
       {:ok, data} ->
-        fiscal_storage_Settings_settings_struct = Kernel.struct(%FiscalStorage{}, data)
+        fiscal_storage_Settings_settings_struct = FiscalStorage.new(data)
         Agent.start_link(fn -> fiscal_storage_Settings_settings_struct end, name: __MODULE__)
       {:error, reason} ->
         Logger.info(reason)

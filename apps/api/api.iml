@@ -50,5 +50,7 @@
     <orderEntry type="library" name="mime" level="project" />
     <orderEntry type="library" name="html_entities" level="project" />
     <orderEntry type="library" name="corsica" level="project" />
+    <orderEntry type="library" name="cowlib" level="project" />
+    <orderEntry type="library" name="ranch" level="project" />
   </component>
 </module>

@@ -7,6 +7,7 @@ defmodule Settings.Device do
   alias Settings.{Device, Storage}
   require Logger
   use Agent
+  use ExConstructor
 
   @key :device
 
@@ -14,7 +15,7 @@ defmodule Settings.Device do
     storage_data = Storage.call({:get, @key})
     case storage_data do
       {:ok, data} ->
-        device_settings_struct = Kernel.struct(%Device{}, data)
+        device_settings_struct = Device.new(data)
         Agent.start_link(fn -> device_settings_struct end, name: __MODULE__)
       {:error, reason} ->
         Logger.info(reason)

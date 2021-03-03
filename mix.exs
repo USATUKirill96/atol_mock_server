@@ -10,15 +10,16 @@ defmodule AtolServer.MixProject do
     ]
   end
 
-  # Dependencies listed here are available only for this
-  # project and cannot be accessed from applications inside
-  # the apps folder.
-  #
-  # Run "mix help deps" for examples and options.
+
+  def application do
+    [applications: [:exconstructor]]
+  end
+
+
   defp deps do
     [
       {:tz, "~> 0.12.0"}, # Расширяет набор часовых поясов
-      {:poison, "~> 3.1"} # Работа с JSON
+      {:exconstructor, "~> 1.1"}  # Работа со структурами
     ]
   end
 

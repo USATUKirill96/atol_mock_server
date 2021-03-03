@@ -9,14 +9,14 @@ defmodule Settings.Shift do
     number: 1,
     state: "closed"
   ]
-
+  use ExConstructor
   @key :shift
 
   def start_link(_) do
     storage_data = Storage.call({:get, @key})
     case storage_data do
       {:ok, data} ->
-        shift_settings_struct = Kernel.struct(%Shift{}, data)
+        shift_settings_struct = Shift.new(data)
         Agent.start_link(fn -> shift_settings_struct end, name: __MODULE__)
       {:error, reason} ->
         Logger.info(reason)
