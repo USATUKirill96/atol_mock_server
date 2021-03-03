@@ -15,6 +15,7 @@
       <a class="navbar-link" href="/">Dashboard</a>
       <a class="navbar-link" href=<%= Routes.shift_path(@conn, :index)%>>Смена</a>
       <a class="navbar-link" href=<%= Routes.device_path(@conn, :index)%>>Устройство</a>
+      <a class="navbar-link" href=<%= Routes.fiscal_storage_path(@conn, :index)%>>Фискальный накопитель</a>
   </nav>
   <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

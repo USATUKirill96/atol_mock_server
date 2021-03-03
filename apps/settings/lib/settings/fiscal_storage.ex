@@ -35,4 +35,16 @@ defmodule Settings.FiscalStorage do
     Agent.update(__MODULE__, fn (_) -> fiscal_storage_Settings end)
     Storage.cast({:update, @key, fiscal_storage_Settings})
   end
+
+  def live_phases() do
+    [
+      {"Настройка ФН", "init"},
+      {"Настроен, готов в активации", "configured"},
+      {"Фискальный режим", "fiscalMode"},
+      {"Постфискальный режим", "postFiscalMode"},
+      {"Доступ к архиву ФН", "accessArchive"},
+      {"Неизвестная фаза жизни", "unknown"}
+    ]
+  end
+
 end

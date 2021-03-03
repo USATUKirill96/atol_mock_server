@@ -1,0 +1,17 @@
+<h1>Настройки фискального накопителя </h1>
+<br>
+<%= form_for @conn, Routes.fiscal_storage_path(@conn, :create), [method: :post], fn f -> %>
+<div class="form-group">
+    <label>
+        Количество регистраций: <%= text_input f, :number_of_registrations, value: @data.settings.number_of_registrations %>
+        Регистраций осталось: <%= text_input f, :registrations_remaining, value: @data.settings.registrations_remaining %>
+        Серийный номер: <%= text_input f, :serial, value: @data.settings.serial %>
+        Жизненный цикл: <%= select f, :live_phase, @data.meta, value: @data.settings.live_phase %>
+    </label>
+</div>
+
+<div class="form-group">
+    <%= submit "Сохранить" %>
+</div>
+<% end %>
+

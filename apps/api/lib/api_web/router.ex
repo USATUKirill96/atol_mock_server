@@ -11,22 +11,25 @@ defmodule ApiWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :put_secure_browser_headers
   end
 
-
+  # KKT Dashboard
   scope "/", ApiWeb do
     pipe_through :browser
     get "/", DashboardController, :index
   end
 
+  # KKT Settings
   scope "/settings", ApiWeb do
     pipe_through :browser
 
     resources "/shift", Settings.ShiftController, only: [:index, :create]
     resources "/device", Settings.DeviceController, only: [:index, :create]
-
+    resources "/fiscal_storage", Settings.FiscalStorageController, only: [:index, :create]
   end
 
+  # KKT API
    scope "/requests", ApiWeb do
      pipe_through :api
 
