@@ -10,17 +10,10 @@ defmodule AtolServer.MixProject do
     ]
   end
 
-
-  def application do
-    [applications: [:exconstructor]]
-  end
-
-
   defp deps do
     [
-      {:tz, "~> 0.12.0"}, # Расширяет набор часовых поясов
-      {:exconstructor, "~> 1.1"}  # Работа со структурами
+      # Анализ кода
+      {:dialyxir, "~> 0.4", only: [:dev]}
     ]
   end
-
 end

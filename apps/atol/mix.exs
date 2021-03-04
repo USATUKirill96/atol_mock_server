@@ -18,13 +18,18 @@ defmodule Atol.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :exconstructor],
       mod: {Atol.Application, []}
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    []
+    [
+      # Работа со структурами
+      {:exconstructor, "~> 1.1"},
+      # Расширяет набор часовых поясов
+      {:tz, "~> 0.12.0"},
+    ]
   end
 end

@@ -4,7 +4,6 @@ defmodule ApiWeb.DashboardController do
 
   def index(conn, _params) do
     conn
-    |>render("dashboard.html")
+    |> render("dashboard.html")
   end
-
 end

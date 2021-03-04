@@ -15,4 +15,4 @@ config :logger, level: :debug
 
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

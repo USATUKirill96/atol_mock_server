@@ -7,23 +7,26 @@ defmodule ApiWeb.ResultController do
     {answer, status} = Tasks.pop(uuid) |> dump_result()
 
     conn
-    |>put_status(status)
-    |>json(answer)
+    |> put_status(status)
+    |> json(answer)
   end
 
   # Если результат таски еще не получен
-  def dump_result(nil) do {"", 404} end
+  def dump_result(nil) do
+    {"", 404}
+  end
 
   def dump_result(task) do
+    answer = %{
+      "results" => [
+        %{
+          "status" => "ready",
+          "errorDescription" => "Ошибок нет",
+          "result" => task
+        }
+      ]
+    }
 
-      answer = %{"results" => [%{
-        "status" => "ready",
-        "errorDescription" => "Ошибок нет",
-        "result"=> task
-      }]
-      }
-
-      {answer, 200}
-
+    {answer, 200}
   end
 end

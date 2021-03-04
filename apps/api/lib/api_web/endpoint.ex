@@ -21,8 +21,8 @@ defmodule ApiWeb.Endpoint do
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
   plug Corsica,
-       origins: "*",
-       allow_headers: ["content-type", "accept", "refer"]
+    origins: "*",
+    allow_headers: ["content-type", "accept", "refer"]
 
   plug Plug.Static,
     at: "/",

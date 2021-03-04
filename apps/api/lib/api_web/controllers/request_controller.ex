@@ -4,9 +4,10 @@ defmodule ApiWeb.RequestController do
 
   def create(conn, params) do
     route(params)
+
     conn
-      |>put_status(200)
-      |>json(%{"status" => "ok"})
+    |> put_status(200)
+    |> json(%{"status" => "ok"})
   end
 
   defp route(params) do
@@ -24,14 +25,19 @@ defmodule ApiWeb.RequestController do
       "reportX" -> Atol.print_report_x(uuid)
       "openShift" -> Atol.open_shift(uuid, name(params))
       "closeShift" -> Atol.close_shift(uuid)
-
       _ -> Logger.warning("Неизвестный запрос")
-
     end
   end
 
-  def keys(%{"request" => %{"keys" => keys}}) do keys end
-  def name(%{"request" => %{"operator" => %{"name" => name}}}) do name end
-  def device_parameters(%{"request" => %{"deviceParameters" => parameters}}) do parameters end
+  def keys(%{"request" => %{"keys" => keys}}) do
+    keys
+  end
 
+  def name(%{"request" => %{"operator" => %{"name" => name}}}) do
+    name
+  end
+
+  def device_parameters(%{"request" => %{"deviceParameters" => parameters}}) do
+    parameters
+  end
 end

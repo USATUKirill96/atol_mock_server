@@ -30,14 +30,12 @@ defmodule ApiWeb.Router do
   end
 
   # KKT API
-   scope "/requests", ApiWeb do
-     pipe_through :api
+  scope "/requests", ApiWeb do
+    pipe_through :api
 
-     post "/", RequestController, :create
-     get "/*uuid", ResultController, :show
-
+    post "/", RequestController, :create
+    get "/*uuid", ResultController, :show
   end
-
 
   if Mix.env() in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
