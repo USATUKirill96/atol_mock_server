@@ -1,17 +1,15 @@
 defmodule Atol.Devices.Parameters do
   alias Atol.Devices.State
-  alias Atol.Tasks
 
-  def get_parameters(uuid, keys) do
+  def get_parameters(keys) do
 
     parameters = for {k, v} <- State.get(:parameters), k in keys, do: %{"key" => k, "value" => v}
 
     %{"deviceParameters" => parameters}
-    |> Tasks.add(uuid)
   end
 
 
-  def set_parameters(uuid, input_data) do
+  def set_parameters(input_data) do
 
     # Обновить параметры устройства
     State.get(:parameters)
@@ -20,7 +18,6 @@ defmodule Atol.Devices.Parameters do
 
     # Создать задачу
     %{"deviceParameters" => input_data}
-    |> Tasks.add(uuid)
   end
 
 

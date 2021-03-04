@@ -1,4 +1,5 @@
 defmodule Atol.Checks.FiscalParams do
+  alias __MODULE__
 
   @type t :: %Atol.Checks.FiscalParams{
                 fiscalDocumentDateTime: Datetime.t(),
@@ -22,4 +23,18 @@ defmodule Atol.Checks.FiscalParams do
             total: 500,
             fnsUrl: "www.nalog.ru"
   use ExConstructor
+
+  def get() do
+
+    {:ok, current_time} = DateTime.now("Asia/Yekaterinburg")
+    current_time_iso = DateTime.to_iso8601(current_time)
+
+     %{
+       fiscalDocumentDateTime: current_time_iso,
+       registrationNumber: "0000000001002292",  # TODO: Взять из настроек
+       shiftNumber:  Atol.Shifts.get().number,
+       total: 500  # TODO: Считать из чека
+     }
+     |> FiscalParams.new()
+  end
 end

@@ -15,7 +15,6 @@ defmodule Atol.FiscalStorages.FiscalStorage do
   def get_info(uuid) do
     State.get(@key)
     |>FiscalStorage.new()
-    |>Atol.Tasks.add(uuid)
   end
 
   def update(fiscal_storage_Settings) do

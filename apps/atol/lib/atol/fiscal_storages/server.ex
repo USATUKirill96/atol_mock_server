@@ -1,6 +1,7 @@
 defmodule Atol.FiscalStorages.Server do
   use GenServer
   alias Atol.FiscalStorages.FiscalStorage
+  alias Atol
 
   # Service functions
   def start_link([]) do
@@ -14,6 +15,7 @@ defmodule Atol.FiscalStorages.Server do
   # Server
   def handle_cast({:getFnInfo, uuid}, state) do
     FiscalStorage.get_info(uuid)
+    |>Tasks.add(uuid)
     {:noreply, state}
   end
 

@@ -1,5 +1,6 @@
 defmodule Atol.Devices.Device do
   alias Atol.Tasks
+  alias __MODULE__
 
   defstruct configurationVersion: "5.4.3-rc4",
             ffdVersion: "1.05",
@@ -13,11 +14,10 @@ defmodule Atol.Devices.Device do
 
   use ExConstructor
 
-  def get_info(uuid) do
+  def get_info() do
 
     %{serial: 12345678}
-    |>Atol.Devices.Device.new()
-    |> Tasks.add(uuid)
+    |>Device.new()
   end
 
 

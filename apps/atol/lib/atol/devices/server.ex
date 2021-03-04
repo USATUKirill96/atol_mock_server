@@ -1,5 +1,6 @@
 defmodule Atol.Devices.Server do
   use GenServer
+  alias Atol.Tasks
 
   # Service functions
   def start_link([]) do
@@ -12,17 +13,22 @@ defmodule Atol.Devices.Server do
 
   # Server
   def handle_cast({:getDeviceInfo, uuid}, state) do
-    Atol.Devices.Device.get_info(uuid)
+    Atol.Devices.Device.get_info()
+    |> Tasks.add(uuid)
     {:noreply, state}
   end
 
   def handle_cast({:getDeviceParameters, {uuid, keys}}, state) do
-    Atol.Devices.Parameters.get_parameters(uuid, keys)
+    Atol.Devices.Parameters.get_parameters(keys)
+    |> Tasks.add(uuid)
+
     {:noreply, state}
   end
 
   def handle_cast({:setDeviceParameters, {uuid, parameters}}, state) do
-    Atol.Devices.Parameters.set_parameters(uuid, parameters)
+    Atol.Devices.Parameters.set_parameters( parameters)
+    |> Tasks.add(uuid)
+
     {:noreply, state}
   end
 

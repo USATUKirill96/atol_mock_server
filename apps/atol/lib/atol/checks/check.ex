@@ -3,7 +3,9 @@ defmodule Atol.Checks.Check do
   alias Atol.Checks.{Check, FiscalParams}
   alias Atol.Tasks
 
-  defstruct fiscalParams: %FiscalParams{}, warnings: nil
+  defstruct fiscalParams: %FiscalParams{},
+            warnings: nil
+
   use ExConstructor
 
 
@@ -12,17 +14,7 @@ defmodule Atol.Checks.Check do
   Создание задачи печати чека прихода
   """
   def sell() do
-    {:ok, current_time} = DateTime.now("Asia/Yekaterinburg")
-    current_time_iso = DateTime.to_iso8601(current_time)
-
-    fiscal_params = %{
-      fiscalDocumentDateTime: current_time_iso,
-      registrationNumber: "0000000001002292",  # TODO: Взять из настроек
-      shiftNumber:  Atol.Shifts.get().number,
-      total: 500  # TODO: Считать из чека
-    }
-    |> FiscalParams.new()
-
+    fiscal_params = FiscalParams.get()
     Check.new(fiscalParams: fiscal_params)
   end
 

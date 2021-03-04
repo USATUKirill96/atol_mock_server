@@ -1,6 +1,8 @@
 defmodule Atol.Shifts.Server do
   use GenServer
   alias Atol.Shifts.Shift
+  alias Atol.Tasks
+
 
   # Service functions
   def start_link([]) do
@@ -14,17 +16,23 @@ defmodule Atol.Shifts.Server do
   # Server
 
   def handle_cast({:getShiftStatus, uuid}, state) do
-    Shift.get_status(uuid)
+    Shift.get_status()
+    |> Tasks.add(uuid)
+
     {:noreply, state}
   end
 
   def handle_cast({:openShift, {uuid, operator}}, state) do
-    Shift.open(uuid, operator)
+    Shift.open(operator)
+    |> Tasks.add(uuid)
+
     {:noreply, state}
   end
 
   def handle_cast({:closeShift, uuid}, state) do
-    Shift.close(uuid)
+    Shift.close()
+    |> Tasks.add(uuid)
+
     {:noreply, state}
   end
 
