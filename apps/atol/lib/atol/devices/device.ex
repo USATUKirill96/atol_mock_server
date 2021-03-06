@@ -2,7 +2,7 @@ defmodule Atol.Devices.Device do
   alias Atol.Devices.State
   alias __MODULE__
 
-  defstruct serial: "9232278066186",
+  defstruct serial: "9232278066186",  # Заводской номер
             parameters: %{}
 
   use ExConstructor

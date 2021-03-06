@@ -9,7 +9,7 @@
         <br>
         <br>
         <h4>Настройки устройства</h4>
-        Серийный номер: <%= text_input f, :serial, value: @params.serial %>
+        Заводской номер: <%= text_input f, :serial, value: @params.serial %>
 
     </label>
 </div>

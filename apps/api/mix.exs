@@ -24,7 +24,7 @@ defmodule Api.MixProject do
   def application do
     [
       mod: {Api.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :atol, :event_bus]
     ]
   end
 
@@ -46,7 +46,12 @@ defmodule Api.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:corsica, "~> 1.0"}
+      {:corsica, "~> 1.0"},
+
+      # Генерация ID для шины данных
+      {:uuid, "~> 1.1"},
+      # EventBus
+      {:event_bus, "~> 1.6.2"}
     ]
   end
 

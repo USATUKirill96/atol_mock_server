@@ -19,7 +19,7 @@ defmodule Atol.Devices.State do
       storage_load([:device])
     rescue
       # Если данных в памяти нет, выгрузить фикстуры и повторить попытку
-      e in ArgumentError -> Logger.warn("Ошибка загрузки данных с диска. Загружаю дефолтные значения")
+      e in ArgumentError -> Logger.warn("Ошибка загрузки данных с диска. Загружаю фикстуры")
                             load_fixtures(fixtures())
                             storage_load([:device])
     end
@@ -59,7 +59,7 @@ defmodule Atol.Devices.State do
       {:device,
         %{
           parameters: %{
-            122 => "John Doel",
+            122 => "John Doe",
             150 => "7736207543"
           },
           serial: "9232278066186"

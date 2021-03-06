@@ -52,5 +52,10 @@
     <orderEntry type="library" name="corsica" level="project" />
     <orderEntry type="library" name="cowlib" level="project" />
     <orderEntry type="library" name="ranch" level="project" />
+    <orderEntry type="library" name="uuid" level="project" />
+    <orderEntry type="library" name="event_bus" level="project" />
+    <orderEntry type="library" name="credo" level="project" />
+    <orderEntry type="library" name="earmark" level="project" />
+    <orderEntry type="library" name="benchfella" level="project" />
   </component>
 </module>
