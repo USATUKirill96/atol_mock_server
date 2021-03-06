@@ -18,4 +18,8 @@ defmodule Atol.Shifts do
     |>Shift.new()
   end
 
+  def update(state) do
+    Server.cast({:update, state})
+  end
+
 end

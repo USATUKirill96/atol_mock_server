@@ -5,14 +5,16 @@ defmodule Atol.FiscalStorages.State do
   use Atol.Utils.Storage
 
 
-  @storage :fiscal_storages
-
   defp fixtures() do
     [
-    %{number_of_registrations: 1,
-      registrations_remaining: 29,
-      serial: "9999078900008855",
-      live_phase: "fiscalMode"}
+      {:fiscal_storage,
+        %{
+          number_of_registrations: 1,
+          registrations_remaining: 29,
+          serial: "9999078900008855",
+          live_phase: "fiscalMode"
+        }
+      }
     ]
   end
 
@@ -23,28 +25,28 @@ defmodule Atol.FiscalStorages.State do
 
   def init([]) do
     # Инициализировать таблицу в памяти и открыть хранилище на диске
-    storage_init(@storage)
+    storage_init()
 
     try do
       # Выгрузить данные из хранилища в память
-      storage_load([:fiscal_storage], @storage)
+      storage_load([:fiscal_storage])
     rescue
       # Если данных в памяти нет, выгрузить фикстуры и повторить попытку
       e in ArgumentError -> Logger.warn("Ошибка загрузки данных с диска. Загружаю дефолтные значения")
-                            load_fixtures(fixtures, @storage)
-                            init([])
+                            load_fixtures(fixtures())
+                            storage_load([:fiscal_storage])
     end
     {:ok, []}
   end
 
   def handle_call({:get, key}, _from, state) do
-    data = storage_get(key, @storage)
+    data = storage_get(key)
     {:reply, data, state}
   end
 
   def handle_cast({:update, key, struct}, state) do
     key
-    |>storage_update(struct, @storage)
+    |>storage_update(struct)
     {:noreply, state}
   end
 

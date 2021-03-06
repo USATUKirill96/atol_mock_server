@@ -3,9 +3,9 @@
 <%= form_for @conn, Routes.shift_path(@conn, :create), [method: :post], fn f -> %>
 <div class="form-group">
     <label>
-        Имя кассира, открывшего смену: <%= text_input f, :operator, value: @settings.operator %>
-        Номер смены: <%= text_input f, :number, value: @settings.number %>
-        Состояние смены: <%= select f, :state, [{"Открыта", "opened"}, {"Закрыта", "closed"}], value: @settings.state %>
+        Имя кассира, открывшего смену: <%= text_input f, :operator, value: @shift.operator %>
+        Номер смены: <%= text_input f, :number, value: @shift.number %>
+        Состояние смены: <%= select f, :state, [{"Открыта", "opened"}, {"Закрыта", "closed"}], value: @shift.state %>
     </label>
 </div>
 

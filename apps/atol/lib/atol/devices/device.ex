@@ -1,24 +1,31 @@
 defmodule Atol.Devices.Device do
-  alias Atol.Tasks
+  alias Atol.Devices.State
   alias __MODULE__
 
-  defstruct configurationVersion: "5.4.3-rc4",
-            ffdVersion: "1.05",
-            firmwareVersion: "1245",
-            fnFfdVersion: "1.0",
-            model: 69,
-            modelName: "АТОЛ 77Ф",
-            receiptLineLength: 48,
-            receiptLineLengthPix: 576,
-            serial: "12345678"  # TODO: брать из настроек
+  defstruct serial: "9232278066186",
+            parameters: %{}
 
   use ExConstructor
 
-  def get_info() do
-
-    %{serial: 12345678}
+  def get() do
+    State.get(:device)
     |>Device.new()
   end
 
+  def update(state) do
+    state
+    |>Device.new()
+    |>State.update(:device)
+
+    state
+  end
+
+  def update(value, field) do
+    %{State.get(:device) | field => value}
+    |>Device.new()
+    |>State.update(:update)
+
+    value
+  end
 
 end

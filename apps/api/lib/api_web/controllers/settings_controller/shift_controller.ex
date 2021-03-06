@@ -2,17 +2,19 @@ defmodule ApiWeb.Settings.ShiftController do
   use ApiWeb, :controller
 
   def index(conn, _params) do
-    settings = Settings.Shift.get()
+    shift = Atol.Shifts.get()
 
     conn
-    |> render("shift.html", settings: settings)
+    |> render("shift.html", shift: shift)
   end
 
   def create(conn, params) do
     # Сохранить настройки
-    params
-    |> Settings.Shift.new()
-    |> Settings.Shift.update()
+    {_, data} = params
+                 |>Map.pop("_csrf_token")
+    data
+    |>Atol.Shifts.Shift.new()
+    |> Atol.Shifts.update()
 
     # Вернуть ответ пользователю
     conn

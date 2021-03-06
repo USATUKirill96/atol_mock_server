@@ -1,6 +1,7 @@
 defmodule ApiWeb.RequestController do
   use ApiWeb, :controller
   require Logger
+  alias Atol.{Checks, Devices, FiscalStorages, Reports, Shifts}
 
   def create(conn, params) do
     route(params)
@@ -14,17 +15,17 @@ defmodule ApiWeb.RequestController do
     %{"request" => %{"type" => type}, "uuid" => uuid} = params
 
     case type do
-      "getShiftStatus" -> Atol.get_shift(uuid)
-      "getFnInfo" -> Atol.get_fn_info(uuid)
-      "getDeviceInfo" -> Atol.get_device_info(uuid)
-      "getDeviceParameters" -> Atol.get_device_parameters(uuid, keys(params))
-      "setDeviceParameters" -> Atol.set_device_parameters(uuid, device_parameters(params))
-      "sell" -> Atol.sell(uuid)
-      "sellReturn" -> Atol.sell_return(uuid)
-      "continuePrint" -> Atol.continue_print(uuid)
-      "reportX" -> Atol.print_report_x(uuid)
-      "openShift" -> Atol.open_shift(uuid, name(params))
-      "closeShift" -> Atol.close_shift(uuid)
+      "getShiftStatus" -> Shifts.get_status(uuid)
+      "getFnInfo" -> FiscalStorages.get_info(uuid)
+      "getDeviceInfo" -> Devices.get_info(uuid)
+      "getDeviceParameters" -> Devices.get_parameters(uuid, keys(params))
+      "setDeviceParameters" -> Devices.set_parameters(uuid, device_parameters(params))
+      "sell" -> Checks.sell(uuid)
+      "sellReturn" -> Checks.sell_return(uuid)
+      "continuePrint" -> Checks.continue_print(uuid)
+      "reportX" -> Reports.print_report_x(uuid)
+      "openShift" -> Shifts.open(uuid, name(params))
+      "closeShift" -> Shifts.close(uuid)
       _ -> Logger.warning("Неизвестный запрос")
     end
   end

@@ -1,35 +1,27 @@
 defmodule Atol.FiscalStorages.FiscalStorage do
-  defstruct number_of_registrations: 1,
-            registrations_remaining: 29,
-            serial: "9999078900008855",
-            live_phase: "fiscalMode"
-
   alias Atol.FiscalStorages.State
   require Logger
-  use ExConstructor
   alias __MODULE__
 
-  @key :fiscal_storage
+  defstruct number_of_registrations: 1,
+            registrations_remaining: 29,
+            serial: "7043675145990",
+            live_phase: "fiscalMode",
+            ffd_version: "1.05",
+            fn_ffd_version: "1.0",
+            validity_date: "2022-04-15T21:00:00+03:00",
+            warnings: nil
+  use ExConstructor
 
-
-  def get_info(uuid) do
-    State.get(@key)
+  def get() do
+    State.get(:fiscal_storage)
     |>FiscalStorage.new()
   end
 
   def update(fiscal_storage_Settings) do
     fiscal_storage_Settings
-    |>State.update(@key)
+    |>FiscalStorage.new()
+    |>State.update(:fiscal_storage)
   end
 
-  def live_phases() do
-    [
-      {"Настройка ФН", "init"},
-      {"Настроен, готов в активации", "configured"},
-      {"Фискальный режим", "fiscalMode"},
-      {"Постфискальный режим", "postFiscalMode"},
-      {"Доступ к архиву ФН", "accessArchive"},
-      {"Неизвестная фаза жизни", "unknown"}
-    ]
-  end
 end

@@ -13,27 +13,27 @@ defmodule Atol.Utils.Storage do
 
       Открыть либо создать dets файл на диске с именем хранилища, а также создать в памяти ets таблицу
       """
-      def storage_init(storage) do
-        :dets.open_file(storage, type: :set)
-        :ets.new(storage, [:set, :protected, :named_table])
+      def storage_init() do
+        :dets.open_file(:disk_storage, type: :set)
+        :ets.new(__MODULE__, [:set, :public, :named_table])
       end
 
 
       @doc """
       Выгрузить данные с диска в память
       """
-      def storage_load(keys, storage) do
+      def storage_load(keys) do
         keys
-        |>Enum.map(fn(key) -> :dets.lookup(storage, key) |> hd end)
-        |>Enum.map(fn(data) -> :ets.insert_new(storage, data) end)
+        |>Enum.map(fn(key) -> :dets.lookup(:disk_storage, key) |> hd end)
+        |>Enum.map(fn(data) -> :ets.insert_new(__MODULE__, data) end)
       end
 
 
       @doc """
       Получить данные из памяти
       """
-      def storage_get(key, storage) do
-        [{_key, data}] = :ets.lookup(storage, key)
+      def storage_get(key) do
+        [{_key, data}] = :ets.lookup(__MODULE__, key)
         data
       end
 
@@ -41,26 +41,26 @@ defmodule Atol.Utils.Storage do
       @doc """
       Обновить данные в памяти и на диске
       """
-      def storage_update(key, struct, storage) do
+      def storage_update(key, struct) do
         # ETS не хранит структуры, нужно мапить их на ассоциативные массивы
         data = Map.from_struct(struct)
 
         # Обновить в памяти
-        :ets.delete(storage, key)
-        :ets.insert_new(storage, {key, data})
+        :ets.delete(__MODULE__, key)
+        :ets.insert_new(__MODULE__, {key, data})
 
         # Обновить на диске
-        :dets.delete(storage, key)
-        :dets.insert_new(storage, {key, data})
+        :dets.delete(:disk_storage, key)
+        :dets.insert_new(:disk_storage, {key, data})
 
       end
 
-      def load_fixtures(fixtures, storage) do
+      def load_fixtures(fixtures) do
         fixtures
-        |>Enum.map(fn({key, _}) -> :dets.delete(storage, key) end)
+        |>Enum.map(fn({key, _}) -> :dets.delete(:disk_storage, key) end)
 
         fixtures
-        |>Enum.map(fn(data) -> :dets.insert_new(storage, data) end)
+        |>Enum.map(fn(data) -> :dets.insert_new(:disk_storage, data) end)
     end
     end
   end

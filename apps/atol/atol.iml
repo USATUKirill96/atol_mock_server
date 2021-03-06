@@ -31,5 +31,8 @@
     <orderEntry type="library" name="tz" level="project" />
     <orderEntry type="library" name="castore" level="project" />
     <orderEntry type="library" name="mint" level="project" />
+    <orderEntry type="library" name="recase" level="project" />
+    <orderEntry type="library" name="credo" level="project" />
+    <orderEntry type="library" name="dialyxir" level="project" />
   </component>
 </module>

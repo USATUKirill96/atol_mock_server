@@ -1,7 +1,8 @@
 defmodule ApiWeb.ResultController do
   use ApiWeb, :controller
+  alias Atol.Tasks
 
-  def show(conn, params) do
+  def index(conn, params) do
     %{"uuid" => [uuid]} = params
 
     {answer, status} = Tasks.pop(uuid) |> dump_result()
@@ -12,11 +13,11 @@ defmodule ApiWeb.ResultController do
   end
 
   # Если результат таски еще не получен
-  def dump_result(nil) do
+  defp dump_result(nil) do
     {"", 404}
   end
 
-  def dump_result(task) do
+  defp dump_result(task) do
     answer = %{
       "results" => [
         %{

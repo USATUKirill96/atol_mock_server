@@ -14,8 +14,7 @@ defmodule Atol.Checks do
     :ok
 """
 
-
-  alias Atol.Check.Server
+  alias Atol.Checks.Server
 
   @spec sell(integer) :: :ok
   def sell(uuid) do

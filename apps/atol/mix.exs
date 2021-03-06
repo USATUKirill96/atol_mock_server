@@ -30,6 +30,8 @@ defmodule Atol.MixProject do
       {:exconstructor, "~> 1.1"},
       # Расширяет набор часовых поясов
       {:tz, "~> 0.12.0"},
+      # Форматирование snake_case структур в camelCase
+      {:recase, "~> 0.5"}
     ]
   end
 end

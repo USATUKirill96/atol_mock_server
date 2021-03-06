@@ -1,6 +1,6 @@
 defmodule Atol.Devices.Server do
   use GenServer
-  alias Atol.Tasks
+  alias Atol.Devices.{Device, Parameters, Info, Schema}
 
   # Service functions
   def start_link([]) do
@@ -12,23 +12,38 @@ defmodule Atol.Devices.Server do
   end
 
   # Server
-  def handle_cast({:getDeviceInfo, uuid}, state) do
-    Atol.Devices.Device.get_info()
-    |> Tasks.add(uuid)
+  def handle_cast({:getInfo, uuid}, state) do
+    Device.get()
+    |>Info.from_device()
+    |>Schema.get_info()
+    |>Atol.Tasks.add(uuid)
     {:noreply, state}
   end
 
-  def handle_cast({:getDeviceParameters, {uuid, keys}}, state) do
-    Atol.Devices.Parameters.get_parameters(keys)
-    |> Tasks.add(uuid)
-
+  def handle_cast({:getParameters, {uuid, keys}}, state) do
+    Device.get()
+    |>Schema.get_parameters(keys)
+    |> Atol.Tasks.add(uuid)
     {:noreply, state}
   end
 
-  def handle_cast({:setDeviceParameters, {uuid, parameters}}, state) do
-    Atol.Devices.Parameters.set_parameters( parameters)
-    |> Tasks.add(uuid)
+  def handle_cast({:setParameters, {uuid, parameters}}, state) do
+    Device.get()
+    |>Parameters.update(parameters)
+    |>Device.update(:parameters)
+    |>Schema.set_parameters()
+    |>Atol.Tasks.add(uuid)
+    {:noreply, state}
+  end
 
+
+  def handle_call({:get}, _from, state) do
+    data = Device.get()
+    {:reply, data, state}
+  end
+
+  def handle_cast({:update, data}, state) do
+    Device.update(data)
     {:noreply, state}
   end
 

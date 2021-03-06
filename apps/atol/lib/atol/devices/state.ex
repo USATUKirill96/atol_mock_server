@@ -5,15 +5,6 @@ defmodule Atol.Devices.State do
   use Atol.Utils.Storage
 
 
-  @storage :devices
-
-  defp fixtures() do
-    [
-      {:parameters, %{122 => "John Doel", 150 => "7736207543"}},
-      {:device, %{"serial" => "12345678"}}
-    ]
-  end
-
   # Service functions
   def start_link([]) do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
@@ -21,28 +12,28 @@ defmodule Atol.Devices.State do
 
   def init([]) do
     # Инициализировать таблицу в памяти и открыть хранилище на диске
-    storage_init(@storage)
+    storage_init()
 
     try do
       # Выгрузить данные из хранилища в память
-      storage_load([:device, :parameters], @storage)
+      storage_load([:device])
     rescue
       # Если данных в памяти нет, выгрузить фикстуры и повторить попытку
       e in ArgumentError -> Logger.warn("Ошибка загрузки данных с диска. Загружаю дефолтные значения")
-                            load_fixtures(fixtures, @storage)
-                            init([])
+                            load_fixtures(fixtures())
+                            storage_load([:device])
     end
     {:ok, []}
   end
 
   def handle_call({:get, key}, _from, state) do
-    data = storage_get(key, @storage)
+    data = storage_get(key)
     {:reply, data, state}
   end
 
   def handle_cast({:update, key, struct}, state) do
     key
-    |>storage_update(struct, @storage)
+    |>storage_update(struct)
     {:noreply, state}
   end
 
@@ -61,6 +52,20 @@ defmodule Atol.Devices.State do
 
   def update(struct, key) do
     cast({:update, key, struct})
+  end
+
+  defp fixtures() do
+    [
+      {:device,
+        %{
+          parameters: %{
+            122 => "John Doel",
+            150 => "7736207543"
+          },
+          serial: "9232278066186"
+        }
+      }
+    ]
   end
 
 end

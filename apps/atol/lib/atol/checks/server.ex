@@ -1,7 +1,7 @@
 defmodule Atol.Checks.Server do
   use GenServer
-  alias Atol.Checks.Check
-  alias Atol.Tasks
+  alias Atol.Checks.{Check, Schema}
+  alias Atol.Shifts.Shift
 
   # Service functions
   def start_link([]) do
@@ -14,22 +14,25 @@ defmodule Atol.Checks.Server do
 
   # Server
   def handle_cast({:sell, uuid}, state) do
-    Check.sell()
-    |>Tasks.add(uuid)
-
+    Shift.get()
+    |>Check.sell()
+    |>Schema.from_check()
+    |>Atol.Tasks.add(uuid)
     {:noreply, state}
   end
 
   def handle_cast({:sellReturn, uuid}, state) do
-    Check.sell_return()
-    |>Tasks.add(uuid)
+    Shift.get()
+    |>Check.sell_return()
+    |>Schema.from_check()
+    |>Atol.Tasks.add(uuid)
 
     {:noreply, state}
   end
 
   def handle_cast({:continuePrint, uuid}, state) do
-    Check.continue_print()
-    |>Tasks.add(uuid)
+    Schema.continue_print()
+    |>Atol.Tasks.add(uuid)
     {:noreply, state}
   end
 

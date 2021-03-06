@@ -11,7 +11,6 @@ defmodule ApiWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug :put_secure_browser_headers
   end
 
   # KKT Dashboard
@@ -34,7 +33,7 @@ defmodule ApiWeb.Router do
     pipe_through :api
 
     post "/", RequestController, :create
-    get "/*uuid", ResultController, :show
+    get "/*uuid", ResultController, :index
   end
 
   if Mix.env() in [:dev, :test] do
