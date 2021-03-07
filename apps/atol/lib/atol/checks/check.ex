@@ -1,12 +1,10 @@
 defmodule Atol.Checks.Check do
-
   alias Atol.Checks.{Check, FiscalParams}
 
   defstruct fiscal_params: %FiscalParams{},
             warnings: nil
 
   use ExConstructor
-
 
   @doc """
   Создание задачи печати чека прихода

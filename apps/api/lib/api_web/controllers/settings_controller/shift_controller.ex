@@ -10,10 +10,12 @@ defmodule ApiWeb.Settings.ShiftController do
 
   def create(conn, params) do
     # Сохранить настройки
-    {_, data} = params
-                 |>Map.pop("_csrf_token")
+    {_, data} =
+      params
+      |> Map.pop("_csrf_token")
+
     data
-    |>Atol.Shifts.Shift.new()
+    |> Atol.Shifts.Shift.new()
     |> Atol.Shifts.update()
 
     # Вернуть ответ пользователю

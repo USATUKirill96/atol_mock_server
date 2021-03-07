@@ -14,8 +14,9 @@ defmodule Atol.FiscalStorages.Server do
   # Server
   def handle_cast({:getFnInfo, uuid}, state) do
     FiscalStorage.get()
-    |>Schema.get_fn_info()
-    |>Atol.Tasks.add(uuid)
+    |> Schema.get_fn_info()
+    |> Atol.Tasks.add(uuid)
+
     {:noreply, state}
   end
 
@@ -28,8 +29,6 @@ defmodule Atol.FiscalStorages.Server do
     FiscalStorage.update(data)
     {:noreply, state}
   end
-
-
 
   # Client
   def call(args) do

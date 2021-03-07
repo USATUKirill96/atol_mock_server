@@ -23,5 +23,4 @@ defmodule Atol.FiscalStorages do
       {"Неизвестная фаза жизни", "unknown"}
     ]
   end
-
 end

@@ -16,11 +16,10 @@ defmodule Atol.Shifts do
 
   def get() do
     Storage.get(:shift)
-    |>Shift.new()
+    |> Shift.new()
   end
 
   def update(state) do
     Server.cast({:update, state})
   end
-
 end

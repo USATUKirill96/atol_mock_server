@@ -1,9 +1,10 @@
 defmodule Atol.Checks.Schema do
-
   def from_check(check) do
-    fiscal_params = check.fiscal_params
-                    |>Map.from_struct()
-                    |>Recase.Enumerable.convert_keys(&Recase.to_camel/1)
+    fiscal_params =
+      check.fiscal_params
+      |> Map.from_struct()
+      |> Recase.Enumerable.convert_keys(&Recase.to_camel/1)
+
     %{
       "fiscalParams" => fiscal_params,
       "warnings" => []

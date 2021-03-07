@@ -1,5 +1,4 @@
 defmodule Atol.Storage.Fixtures do
-
   alias Atol.Storage.Fixtures.{Device, FiscalStorage, Shift}
 
   @doc """
@@ -10,15 +9,16 @@ defmodule Atol.Storage.Fixtures do
     :dets.delete_all_objects(:disk_storage)
 
     fixtures()
-    |>Enum.map(fn(data) -> :dets.insert_new(:disk_storage, data) end)
+    |> Enum.map(fn data -> :dets.insert_new(:disk_storage, data) end)
+
     :dets.close(:disk_storage)
   end
 
   def fixtures() do
     [
-    Device.get(),
-    FiscalStorage.get(),
-    Shift.get()
+      Device.get(),
+      FiscalStorage.get(),
+      Shift.get()
     ]
   end
 end

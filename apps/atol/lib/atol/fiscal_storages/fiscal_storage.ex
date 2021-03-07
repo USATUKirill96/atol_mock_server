@@ -11,17 +11,17 @@ defmodule Atol.FiscalStorages.FiscalStorage do
             fn_ffd_version: "1.0",
             validity_date: "2022-04-15T21:00:00+03:00",
             warnings: nil
+
   use ExConstructor
 
   def get() do
     Storage.get(:fiscal_storage)
-    |>FiscalStorage.new()
+    |> FiscalStorage.new()
   end
 
   def update(fiscal_storage_Settings) do
     fiscal_storage_Settings
-    |>FiscalStorage.new()
-    |>Storage.update(:fiscal_storage)
+    |> FiscalStorage.new()
+    |> Storage.update(:fiscal_storage)
   end
-
 end

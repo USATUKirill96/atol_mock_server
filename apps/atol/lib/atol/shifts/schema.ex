@@ -22,7 +22,5 @@ defmodule Atol.Shifts.Schema do
         "state" => status.state
       }
     }
-
-
   end
 end

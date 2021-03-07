@@ -8,7 +8,6 @@ defmodule Atol.Storage.Server do
 
   use GenServer
 
-
   # Service functions
   def start_link([]) do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
@@ -22,7 +21,6 @@ defmodule Atol.Storage.Server do
     {:ok, []}
   end
 
-
   # Server
   def handle_call({:get, key}, _from, state) do
     data = storage_get(key)
@@ -31,7 +29,8 @@ defmodule Atol.Storage.Server do
 
   def handle_cast({:update, key, struct}, state) do
     key
-    |>storage_update(struct)
+    |> storage_update(struct)
+
     {:noreply, state}
   end
 
@@ -44,7 +43,6 @@ defmodule Atol.Storage.Server do
     GenServer.cast(__MODULE__, args)
   end
 
-
   # Логика работы с Erlang Term Storage:
 
   @doc """
@@ -53,19 +51,20 @@ defmodule Atol.Storage.Server do
   Открыть либо создать dets файл на диске с именем хранилища, а также создать в памяти ets таблицу
   """
   def storage_init() do
-    :dets.open_file(:disk_storage, type: :set)
     :ets.new(__MODULE__, [:set, :public, :named_table])
   end
-
 
   @doc """
   Выгрузить данные с диска в память
   """
   def storage_load() do
-    :dets.match(:disk_storage, :"$1")
-    |>Enum.map(fn(data) -> :ets.insert_new(__MODULE__, data) end)
-  end
+    disk_open()
 
+    :dets.match(:disk_storage, :"$1")
+    |> Enum.map(fn data -> :ets.insert_new(__MODULE__, data) end)
+
+    disk_close()
+  end
 
   @doc """
   Получить данные из памяти
@@ -74,7 +73,6 @@ defmodule Atol.Storage.Server do
     [{_key, data}] = :ets.lookup(__MODULE__, key)
     data
   end
-
 
   @doc """
   Обновить данные в памяти и на диске
@@ -88,8 +86,17 @@ defmodule Atol.Storage.Server do
     :ets.insert_new(__MODULE__, {key, data})
 
     # Обновить на диске
+    disk_open()
     :dets.delete(:disk_storage, key)
     :dets.insert_new(:disk_storage, {key, data})
+    disk_close()
+  end
 
+  defp disk_open do
+    :dets.open_file(:disk_storage, type: :set)
+  end
+
+  defp disk_close do
+    :dets.close(:disk_storage)
   end
 end

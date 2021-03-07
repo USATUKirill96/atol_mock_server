@@ -15,27 +15,28 @@ defmodule Atol.Checks.Server do
   # Server
   def handle_cast({:sell, uuid}, state) do
     Shift.get()
-    |>Check.sell()
-    |>Schema.from_check()
-    |>Atol.Tasks.add(uuid)
+    |> Check.sell()
+    |> Schema.from_check()
+    |> Atol.Tasks.add(uuid)
+
     {:noreply, state}
   end
 
   def handle_cast({:sellReturn, uuid}, state) do
     Shift.get()
-    |>Check.sell_return()
-    |>Schema.from_check()
-    |>Atol.Tasks.add(uuid)
+    |> Check.sell_return()
+    |> Schema.from_check()
+    |> Atol.Tasks.add(uuid)
 
     {:noreply, state}
   end
 
   def handle_cast({:continuePrint, uuid}, state) do
     Schema.continue_print()
-    |>Atol.Tasks.add(uuid)
+    |> Atol.Tasks.add(uuid)
+
     {:noreply, state}
   end
-
 
   # Client
   def call(args) do

@@ -14,10 +14,7 @@ defmodule Atol.Devices.Info do
   use ExConstructor
 
   def from_device(device) do
-
     %{serial: device.serial}
-    |>Info.new()
+    |> Info.new()
   end
-
-
 end

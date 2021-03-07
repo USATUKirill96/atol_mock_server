@@ -1,3 +1,2 @@
 defmodule Atol do
-
 end

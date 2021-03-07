@@ -1,5 +1,4 @@
 defmodule Atol.Storage do
-
   alias Atol.Storage.Server
 
   # API для обращения к хранилищу данных

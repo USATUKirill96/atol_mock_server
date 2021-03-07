@@ -1,6 +1,5 @@
 defmodule Dashboard.Server do
   @moduledoc false
-  
 
   use GenServer
 
@@ -17,7 +16,6 @@ defmodule Dashboard.Server do
     GenServer.cast(__MODULE__, event_shadow)
     :ok
   end
-
 
   def handle_cast({:api_messages, id} = event_shadow, state) do
     event = EventBus.fetch_event({:api_messages, id})
@@ -40,7 +38,5 @@ defmodule Dashboard.Server do
     IO.puts("Что-то получил")
     EventBus.mark_as_skipped({__MODULE__, event_shadow})
     {:noreply, state}
-
   end
-
 end

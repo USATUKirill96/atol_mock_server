@@ -7,14 +7,15 @@ defmodule AtolServer.MixProject do
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      dialyzer: [plt_add_apps: [:mix]]
     ]
   end
 
   defp deps do
     [
       # Анализ кода
-      {:dialyxir, "~> 0.4", only: [:dev]},
+      {:dialyxir, "~> 0.4", only: [:dev]}
     ]
   end
 
@@ -23,5 +24,4 @@ defmodule AtolServer.MixProject do
       setup: "load_fixtures"
     ]
   end
-
 end
