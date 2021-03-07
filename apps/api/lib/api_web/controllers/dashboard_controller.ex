@@ -3,7 +3,8 @@ defmodule ApiWeb.DashboardController do
   require Logger
 
   def index(conn, _params) do
+    actions = Dashboard.get()
     conn
-    |> render("dashboard.html")
+    |> render("dashboard.html", actions: actions)
   end
 end

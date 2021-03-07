@@ -2,6 +2,7 @@ defmodule ApiWeb.RequestController do
   use ApiWeb, :controller
   require Logger
   alias Atol.{Checks, Devices, FiscalStorages, Reports, Shifts}
+  alias EventBus.Model.Event
 
   def create(conn, params) do
     route(params)
@@ -13,6 +14,7 @@ defmodule ApiWeb.RequestController do
 
   defp route(params) do
     %{"request" => %{"type" => type}, "uuid" => uuid} = params
+    create_event(params, :api_events)
 
     case type do
       "getShiftStatus" -> Shifts.get_status(uuid)
@@ -40,5 +42,18 @@ defmodule ApiWeb.RequestController do
 
   def device_parameters(%{"request" => %{"deviceParameters" => parameters}}) do
     parameters
+  end
+
+  @doc """
+  Создать ивент в шине данных, чтобы дашборд мог вывести информацию о реквесте пользователю
+  """
+  def create_event(params, topic) do
+
+    %Event{
+    id: UUID.uuid4(),
+    topic: topic,
+    data: params
+    }
+    |>EventBus.notify()
   end
 end

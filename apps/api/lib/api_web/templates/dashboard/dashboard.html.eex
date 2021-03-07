@@ -1,1 +1,14 @@
 <h2>Домашнаяя страница </h2>
+
+    <%= for action <- @actions do %>
+<div style="background-color: #cfc ; padding: 10px; border: 1px solid green;">
+Время:
+        <br>
+        <%= action.time %>
+        <br>
+                    Событие:
+        <br>
+        <%= action.text %>
+                    <hr>
+</div>
+<% end %>

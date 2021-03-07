@@ -23,5 +23,9 @@
     <orderEntry type="library" name="ex_doc" level="project" />
     <orderEntry type="library" name="earmark" level="project" />
     <orderEntry type="library" name="benchfella" level="project" />
+    <orderEntry type="library" name="jason" level="project" />
+    <orderEntry type="library" name="exconstructor" level="project" />
+    <orderEntry type="library" name="ex_spec" level="project" />
+    <orderEntry type="library" name="coverex" level="project" />
   </component>
 </module>

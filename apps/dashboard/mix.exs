@@ -18,7 +18,7 @@ defmodule Dashboard.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :event_bus],
+      extra_applications: [:logger, :event_bus, :jason, :exconstructor],
       mod: {Dashboard.Application, []}
     ]
   end
@@ -29,7 +29,11 @@ defmodule Dashboard.MixProject do
       # Генерация ID для шины данных
       {:uuid, "~> 1.1"},
       # EventBus
-      {:event_bus, "~> 1.6.2"}
+      {:event_bus, "~> 1.6.2"},
+      # Работа с JSON
+      {:jason, "~> 1.2"},
+      # Работа со структурами
+      {:exconstructor, "~> 1.1"},
     ]
   end
 end

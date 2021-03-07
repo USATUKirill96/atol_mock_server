@@ -8,7 +8,8 @@ defmodule Dashboard.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      Dashboard.Server
+      Dashboard.Consumer,
+      Dashboard.Storage
     ]
 
     opts = [strategy: :one_for_one, name: Dashboard.Supervisor]

@@ -16,6 +16,6 @@ config :logger, level: :debug
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
 # Message Bus
-config :event_bus, topics: [:atol_messages, :api_messages]
+config :event_bus, topics: [:errors, :api_events]
 
 import_config "#{Mix.env()}.exs"

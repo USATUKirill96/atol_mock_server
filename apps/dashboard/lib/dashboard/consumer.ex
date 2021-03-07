@@ -1,4 +1,4 @@
-defmodule Dashboard.Server do
+defmodule Dashboard.Consumer do
   @moduledoc false
 
   use GenServer
@@ -8,7 +8,7 @@ defmodule Dashboard.Server do
   end
 
   def init([]) do
-    EventBus.subscribe({Dashboard.Server, ["atol_messages", "api_messages"]})
+    EventBus.subscribe({Dashboard.Consumer, ["api_events", "errors"]})
     {:ok, []}
   end
 
@@ -17,25 +17,25 @@ defmodule Dashboard.Server do
     :ok
   end
 
-  def handle_cast({:api_messages, id} = event_shadow, state) do
-    event = EventBus.fetch_event({:api_messages, id})
-    IO.inspect(event, label: "Получил такие данные в подписчике")
-    UUID.uuid4()
+  def handle_cast({:api_events, id} = event_shadow, state) do
+    EventBus.fetch_event({:api_events, id})
+    |>Dashboard.Action.from_event()
+    |>Dashboard.Storage.add()
 
     EventBus.mark_as_completed({__MODULE__, event_shadow})
     {:noreply, state}
   end
 
-  def handle_cast({:atol_messages, id} = event_shadow, state) do
-    event = EventBus.fetch_event({:atol_messages, id})
-    IO.inspect(event, label: "Получил такие данные в подписчике")
+  def handle_cast({:errors, id} = event_shadow, state) do
+    EventBus.fetch_event({:errors, id})
+    |>Dashboard.Action.from_event()
+    |>Dashboard.Storage.add()
 
     EventBus.mark_as_completed({__MODULE__, event_shadow})
     {:noreply, state}
   end
 
   def handle_cast({_topic, _id} = event_shadow, state) do
-    IO.puts("Что-то получил")
     EventBus.mark_as_skipped({__MODULE__, event_shadow})
     {:noreply, state}
   end
