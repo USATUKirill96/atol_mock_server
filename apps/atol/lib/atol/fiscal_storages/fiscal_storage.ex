@@ -1,5 +1,5 @@
 defmodule Atol.FiscalStorages.FiscalStorage do
-  alias Atol.FiscalStorages.State
+  alias Atol.Storage
   require Logger
   alias __MODULE__
 
@@ -14,14 +14,14 @@ defmodule Atol.FiscalStorages.FiscalStorage do
   use ExConstructor
 
   def get() do
-    State.get(:fiscal_storage)
+    Storage.get(:fiscal_storage)
     |>FiscalStorage.new()
   end
 
   def update(fiscal_storage_Settings) do
     fiscal_storage_Settings
     |>FiscalStorage.new()
-    |>State.update(:fiscal_storage)
+    |>Storage.update(:fiscal_storage)
   end
 
 end

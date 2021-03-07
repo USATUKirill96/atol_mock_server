@@ -1,21 +1,22 @@
 defmodule Atol.Shifts.Shift do
+  alias __MODULE__
+  require Logger
+  alias Atol.Storage
+
   defstruct operator: "John Doel",
             number: 1,
             state: "closed"
-
-  alias Atol.Shifts.{State, Shift}
-  require Logger
   use ExConstructor
 
   def get() do
-    State.get(:shift)
+    Storage.get(:shift)
     |>Shift.new()
   end
 
   def update(data) do
     data
     |>Shift.new()
-    |>State.update(:shift)
+    |>Storage.update(:shift)
 
     data
   end

@@ -1,5 +1,6 @@
 defmodule Atol.Shifts do
-  alias Atol.Shifts.{State, Server, Shift}
+  alias Atol.Shifts.{Server, Shift}
+  alias Atol.Storage
 
   def get_status(uuid) do
     Server.cast({:getShiftStatus, uuid})
@@ -14,7 +15,7 @@ defmodule Atol.Shifts do
   end
 
   def get() do
-    State.get(:shift)
+    Storage.get(:shift)
     |>Shift.new()
   end
 

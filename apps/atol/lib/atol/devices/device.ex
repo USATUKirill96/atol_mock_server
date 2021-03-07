@@ -1,5 +1,5 @@
 defmodule Atol.Devices.Device do
-  alias Atol.Devices.State
+  alias Atol.Storage
   alias __MODULE__
 
   defstruct serial: "9232278066186",  # Заводской номер
@@ -8,22 +8,22 @@ defmodule Atol.Devices.Device do
   use ExConstructor
 
   def get() do
-    State.get(:device)
+    Storage.get(:device)
     |>Device.new()
   end
 
   def update(state) do
     state
     |>Device.new()
-    |>State.update(:device)
+    |>Storage.update(:device)
 
     state
   end
 
   def update(value, field) do
-    %{State.get(:device) | field => value}
+    %{Storage.get(:device) | field => value}
     |>Device.new()
-    |>State.update(:update)
+    |>Storage.update(:device)
 
     value
   end

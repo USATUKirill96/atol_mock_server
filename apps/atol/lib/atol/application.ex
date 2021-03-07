@@ -4,7 +4,7 @@ defmodule Atol.Application do
   @moduledoc false
 
   use Application
-  alias Atol.{Checks, Devices, FiscalStorages, Reports, Shifts, Tasks}
+  alias Atol.{Checks, Devices, FiscalStorages, Reports, Shifts, Tasks, Storage}
 
   @impl true
   def start(_type, _args) do
@@ -14,11 +14,7 @@ defmodule Atol.Application do
       FiscalStorages.Server,
       Reports.Server,
       Shifts.Server,
-
-      Devices.State,
-      FiscalStorages.State,
-      Shifts.State,
-
+      Storage.Server,
       Tasks
     ]
 

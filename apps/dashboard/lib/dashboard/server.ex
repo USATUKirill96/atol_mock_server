@@ -13,7 +13,7 @@ defmodule Dashboard.Server do
     {:ok, []}
   end
 
-  def process({topic, id} = event_shadow) do
+  def process({_topic, _id} = event_shadow) do
     GenServer.cast(__MODULE__, event_shadow)
     :ok
   end
@@ -22,6 +22,7 @@ defmodule Dashboard.Server do
   def handle_cast({:api_messages, id} = event_shadow, state) do
     event = EventBus.fetch_event({:api_messages, id})
     IO.inspect(event, label: "Получил такие данные в подписчике")
+    UUID.uuid4()
 
     EventBus.mark_as_completed({__MODULE__, event_shadow})
     {:noreply, state}

@@ -6,7 +6,8 @@ defmodule AtolServer.MixProject do
       apps_path: "apps",
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -16,4 +17,11 @@ defmodule AtolServer.MixProject do
       {:dialyxir, "~> 0.4", only: [:dev]},
     ]
   end
+
+  defp aliases do
+    [
+      setup: "load_fixtures"
+    ]
+  end
+
 end
