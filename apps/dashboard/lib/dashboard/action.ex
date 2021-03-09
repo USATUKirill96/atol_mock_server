@@ -10,15 +10,17 @@ defmodule Dashboard.Action do
   def from_event(%{data: data, topic: topic} = event) do
     {:ok, datetime} = DateTime.now("Asia/Yekaterinburg")
     {:ok, text} = Jason.encode(data)
+
     %{
-      time: datetime |>DateTime.to_time(),
+      time: datetime |> DateTime.to_time(),
       type: topic,
       text: text
     }
-    |>Action.new()
+    |> Action.new()
   end
 
   def from_storage(storage_data) do
-    for {_time, data} <- storage_data, do: data
+    list = for {_time, data} <- storage_data, do: data
+    Enum.reverse(list)
   end
 end

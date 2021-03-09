@@ -51,7 +51,9 @@ defmodule Api.MixProject do
       # Генерация ID для шины данных
       {:uuid, "~> 1.1"},
       # EventBus
-      {:event_bus, "~> 1.6.2"}
+      {:event_bus, "~> 1.6.2"},
+      # Валидатор
+      {:skooma, "~> 0.2.0"}
     ]
   end
 

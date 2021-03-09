@@ -4,12 +4,31 @@ defmodule ApiWeb.RequestController do
   alias Atol.{Checks, Devices, FiscalStorages, Reports, Shifts}
   alias EventBus.Model.Event
 
+  plug :validate_request
+
   def create(conn, params) do
     route(params)
 
     conn
     |> put_status(200)
     |> json(%{"status" => "ok"})
+  end
+
+  defp validate_request(conn, _) do
+    Api.Validator.validate(conn.params)
+    |> case do
+      {:error, errors} ->
+        create_event(%{"Запрос" => conn.params, "Ошибки" => errors}, :errors)
+
+        conn
+        |> put_status(400)
+        |> json(%{"status" => "error"})
+        |> halt()
+
+      :ok ->
+        conn
+        |> put_status(200)
+    end
   end
 
   defp route(params) do
@@ -47,13 +66,12 @@ defmodule ApiWeb.RequestController do
   @doc """
   Создать ивент в шине данных, чтобы дашборд мог вывести информацию о реквесте пользователю
   """
-  def create_event(params, topic) do
-
+  def create_event(data, topic) do
     %Event{
-    id: UUID.uuid4(),
-    topic: topic,
-    data: params
+      id: UUID.uuid4(),
+      topic: topic,
+      data: data
     }
-    |>EventBus.notify()
+    |> EventBus.notify()
   end
 end

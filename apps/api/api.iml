@@ -57,5 +57,6 @@
     <orderEntry type="library" name="credo" level="project" />
     <orderEntry type="library" name="earmark" level="project" />
     <orderEntry type="library" name="benchfella" level="project" />
+    <orderEntry type="library" name="skooma" level="project" />
   </component>
 </module>

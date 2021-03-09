@@ -33,7 +33,7 @@ defmodule Dashboard.MixProject do
       # Работа с JSON
       {:jason, "~> 1.2"},
       # Работа со структурами
-      {:exconstructor, "~> 1.1"},
+      {:exconstructor, "~> 1.1"}
     ]
   end
 end

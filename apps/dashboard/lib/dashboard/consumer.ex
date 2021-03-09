@@ -19,8 +19,8 @@ defmodule Dashboard.Consumer do
 
   def handle_cast({:api_events, id} = event_shadow, state) do
     EventBus.fetch_event({:api_events, id})
-    |>Dashboard.Action.from_event()
-    |>Dashboard.Storage.add()
+    |> Dashboard.Action.from_event()
+    |> Dashboard.Storage.add()
 
     EventBus.mark_as_completed({__MODULE__, event_shadow})
     {:noreply, state}
@@ -28,8 +28,8 @@ defmodule Dashboard.Consumer do
 
   def handle_cast({:errors, id} = event_shadow, state) do
     EventBus.fetch_event({:errors, id})
-    |>Dashboard.Action.from_event()
-    |>Dashboard.Storage.add()
+    |> Dashboard.Action.from_event()
+    |> Dashboard.Storage.add()
 
     EventBus.mark_as_completed({__MODULE__, event_shadow})
     {:noreply, state}
