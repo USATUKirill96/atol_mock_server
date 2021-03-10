@@ -14,7 +14,12 @@ defmodule ApiWeb.RequestController do
     |> json(%{"status" => "ok"})
   end
 
-  defp validate_request(conn, _) do
+  @doc """
+  Валидация реквеста согласно схеме. Если по ключу реквеста имеется схема, и все данные ей соответствуют,
+  будет выполняться бизнес-логика контроллера. В противном случае, сразу вернется 400 ошибка,
+  и будет создан :error евент
+  """
+  def validate_request(conn, _) do
     Api.Validator.validate(conn.params)
     |> case do
       {:error, errors} ->
@@ -31,7 +36,11 @@ defmodule ApiWeb.RequestController do
     end
   end
 
-  defp route(params) do
+  @doc """
+  Роутинг реквеста на бизнес-логику приложения Atol. Сервер АТОЛ роутит задачи не через путь, а через атрибут "key",
+  поэтому разветвление логики по таскам происхоит здесь.
+  """
+  def route(params) do
     %{"request" => %{"type" => type}, "uuid" => uuid} = params
     create_event(params, :api_events)
 
@@ -51,27 +60,28 @@ defmodule ApiWeb.RequestController do
     end
   end
 
-  def keys(%{"request" => %{"keys" => keys}}) do
-    keys
-  end
-
-  def name(%{"request" => %{"operator" => %{"name" => name}}}) do
-    name
-  end
-
-  def device_parameters(%{"request" => %{"deviceParameters" => parameters}}) do
-    parameters
-  end
-
   @doc """
   Создать ивент в шине данных, чтобы дашборд мог вывести информацию о реквесте пользователю
   """
   def create_event(data, topic) do
-    %Event{
-      id: UUID.uuid4(),
-      topic: topic,
-      data: data
-    }
+    %Event{id: UUID.uuid4(), topic: topic, data: data}
     |> EventBus.notify()
+  end
+
+  # Парсеры данных из реквеста для передачи в слой бизнес-логики
+
+  @spec keys(map) :: list(integer)
+  def keys(%{"request" => %{"keys" => keys}}) do
+    keys
+  end
+
+  @spec name(map) :: String.t()
+  def name(%{"request" => %{"operator" => %{"name" => name}}}) do
+    name
+  end
+
+  @spec device_parameters(map) :: list(map)
+  def device_parameters(%{"request" => %{"deviceParameters" => parameters}}) do
+    parameters
   end
 end

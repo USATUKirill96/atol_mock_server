@@ -1,14 +1,17 @@
 defmodule Atol.FiscalStorages do
-  alias Atol.FiscalStorages.Server
+  alias Atol.FiscalStorages.{Server, FiscalStorage}
 
+  @spec get_info(integer) :: :ok
   def get_info(uuid) do
     Server.cast({:getFnInfo, uuid})
   end
 
+  @spec get() :: FiscalStorage.t()
   def get() do
     Server.call({:get})
   end
 
+  @spec update(map) :: :ok
   def update(state) do
     Server.cast({:update, state})
   end

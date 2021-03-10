@@ -13,7 +13,7 @@ defmodule Atol.Reports.Server do
   # Server
 
   def handle_cast({:printReportX, uuid}, state) do
-    Atol.Tasks.add("fine", uuid)
+    Atol.Tasks.add(%{result: "fine"}, uuid)
     {:noreply, state}
   end
 

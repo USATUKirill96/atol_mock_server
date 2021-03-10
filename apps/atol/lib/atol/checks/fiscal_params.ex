@@ -1,19 +1,24 @@
 defmodule Atol.Checks.FiscalParams do
+  @moduledoc """
+  Структура фискальных параметров чека и функция её генерации
+  """
+
   alias __MODULE__
+  alias Atol.Shifts.Shift
 
-  #  @type t :: %Atol.Checks.FiscalParams{
-  #                fiscalDocumentDateTime: Datetime.t(),
-  #                fiscalDocumentNumber: integer,
-  #                fiscalDocumentSign: String.t(),
-  #                fiscalReceiptNumber: integer,
-  #                fnNumber: String.t(),
-  #                registrationNumber: String.t(),
-  #                shiftNumber: integer,
-  #                total: integer,
-  #                fnsUrl: String.t()
-  #             }
+  @type t :: %__MODULE__{
+          fiscal_document_datetime: DateTime.t(),
+          fiscal_document_sign: integer,
+          fiscal_document_sign: String.t(),
+          fiscal_receipt_number: integer,
+          fn_number: String.t(),
+          registration_number: String.t(),
+          shift_number: integer,
+          total: integer,
+          fnsUrl: String.t()
+        }
 
-  defstruct fiscal_document_datetime: "2017-07-25T13:16:00+03:00",
+  defstruct fiscal_document_datetime: nil,
             fiscal_document_number: :rand.uniform(10_000_000),
             fiscal_document_sign: :rand.uniform(10_000_000) |> Integer.to_string(),
             fiscal_receipt_number: :rand.uniform(10_000_000),
@@ -27,6 +32,10 @@ defmodule Atol.Checks.FiscalParams do
 
   use ExConstructor
 
+  @doc """
+  Сформировать структуру фискальных параметров чека, основываясь на информации о смене
+  """
+  @spec get(Shift.t()) :: FiscalParams.t()
   def get(shift) do
     {:ok, current_time} = DateTime.now("Asia/Yekaterinburg")
     current_time_iso = DateTime.to_iso8601(current_time)

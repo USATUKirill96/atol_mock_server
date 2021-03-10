@@ -1,4 +1,9 @@
 defmodule Api.Validator do
+  @doc """
+  Валидировать данные реквеста. Реквест сопоставляется со схемой по ключу %{"request" => %{"type" => key}}.
+  Возвращает ошибку с описанием, если схема не была найдена или реквест не соответствует схеме
+  """
+  @spec validate(map) :: :ok | {:error, list(String.t())}
   def validate(params) do
     params
     |> get_schema()
@@ -26,6 +31,7 @@ defmodule Api.Validator do
 
   def get_schema(%{"request" => %{"type" => "setDeviceParameters"}} = params) do
     IO.inspect(params, label: "Что в параметрах для схемы")
+
     %{
       "request" => %{"deviceParameters" => [:list, :map, &device_parameters/0], "type" => :string},
       "uuid" => :string
@@ -33,16 +39,15 @@ defmodule Api.Validator do
   end
 
   def get_schema(%{"request" => %{"type" => "sell"}}) do
-
     %{
       "request" => %{
-      "items" => [:list, :map, &item_schema/0],
-      "operator" => %{"name" => :string, "vatin" => :string},
-      "payments" => [:list, :map, &payment_schema/0],
-      "preItems" => [:list, :map, :not_required, &pre_item_schema/0],
-      "taxationType" => :string,
-      "type" => :string,
-      "ignoreNonFiscalPrintErrors" => [:bool, :not_required]
+        "items" => [:list, :map, &item_schema/0],
+        "operator" => %{"name" => :string, "vatin" => :string},
+        "payments" => [:list, :map, &payment_schema/0],
+        "preItems" => [:list, :map, :not_required, &pre_item_schema/0],
+        "taxationType" => :string,
+        "type" => :string,
+        "ignoreNonFiscalPrintErrors" => [:bool, :not_required]
       },
       "uuid" => :string
     }
@@ -81,7 +86,9 @@ defmodule Api.Validator do
     :error
   end
 
-  defp device_parameters do %{"key" => :int, "value" => :string} end
+  defp device_parameters do
+    %{"key" => :int, "value" => :string}
+  end
 
   defp item_schema do
     %{
@@ -105,5 +112,4 @@ defmodule Api.Validator do
   defp pre_item_schema do
     %{"doubleHeight" => :bool, "doubleWidth" => :bool, "text" => :string, "type" => :string}
   end
-
 end

@@ -47,8 +47,6 @@ defmodule Atol.Storage.Server do
 
   @doc """
   Инициализировать хранилище.
-
-  Открыть либо создать dets файл на диске с именем хранилища, а также создать в памяти ets таблицу
   """
   def storage_init() do
     :ets.new(__MODULE__, [:set, :public, :named_table])

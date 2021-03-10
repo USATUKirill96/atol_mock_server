@@ -3,6 +3,7 @@ defmodule AtolServer.MixProject do
 
   def project do
     [
+      name: :atol_server,
       apps_path: "apps",
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
@@ -15,7 +16,9 @@ defmodule AtolServer.MixProject do
   defp deps do
     [
       # Анализ кода
-      {:dialyxir, "~> 0.4", only: [:dev]}
+      {:dialyxir, "~> 0.4", only: [:dev]},
+      # Рендеринг документации
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
 

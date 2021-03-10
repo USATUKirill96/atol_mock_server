@@ -1,4 +1,5 @@
 defmodule Dashboard.Storage do
+  alias Dashboard.Action
   use GenServer
 
   # Service functions
@@ -32,10 +33,12 @@ defmodule Dashboard.Storage do
   end
 
   # API
+  @spec get() :: list({Time.t(), Action.t()})
   def get() do
     call(:get)
   end
 
+  @spec add(Action.t()) :: :ok
   def add(data) do
     cast({:add, data})
   end

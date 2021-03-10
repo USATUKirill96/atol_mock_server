@@ -1,4 +1,6 @@
 defmodule Atol.Checks.Server do
+  @moduledoc false
+
   use GenServer
   alias Atol.Checks.{Check, Schema}
   alias Atol.Shifts.Shift

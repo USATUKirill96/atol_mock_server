@@ -1,4 +1,7 @@
 defmodule Atol.Shifts.Schema do
+  alias Atol.Shifts.{Shift, Status}
+
+  @spec from_shift(Shift.t()) :: map
   def from_shift(shift) do
     %{
       "fiscalParams" => %{
@@ -14,6 +17,7 @@ defmodule Atol.Shifts.Schema do
     }
   end
 
+  @spec from_status(Status.t()) :: map
   def from_status(status) do
     %{
       "shiftStatus" => %{

@@ -36,19 +36,22 @@ defmodule ApiWeb.ResultController do
 
   defp create_event(uuid, status) do
     status
-    |>case do
-      404 -> %Event{
-               id: UUID.uuid4(),
-               topic: :errors,
-               data: "Не найден результат для запроса с ID: #{uuid}"
-             }
-             |> EventBus.notify()
-      200 -> %Event{
-               id: UUID.uuid4(),
-               topic: :api_events,
-               data: "Запрошен результат выполнения задачи с ID #{uuid}"
-             }
-             |> EventBus.notify()
-      end
+    |> case do
+      404 ->
+        %Event{
+          id: UUID.uuid4(),
+          topic: :errors,
+          data: "Не найден результат для запроса с ID: #{uuid}"
+        }
+        |> EventBus.notify()
+
+      200 ->
+        %Event{
+          id: UUID.uuid4(),
+          topic: :api_events,
+          data: "Запрошен результат выполнения задачи с ID #{uuid}"
+        }
+        |> EventBus.notify()
+    end
   end
 end

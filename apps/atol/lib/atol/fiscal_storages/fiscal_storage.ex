@@ -1,7 +1,17 @@
 defmodule Atol.FiscalStorages.FiscalStorage do
-  alias Atol.Storage
-  require Logger
   alias __MODULE__
+  alias Atol.Storage
+
+  @type t :: %__MODULE__{
+          number_of_registrations: integer,
+          registrations_remaining: integer,
+          serial: String.t(),
+          live_phase: String.t(),
+          ffd_version: String.t(),
+          fn_ffd_version: String.t(),
+          validity_date: String.t(),
+          warnings: String.t()
+        }
 
   defstruct number_of_registrations: 1,
             registrations_remaining: 29,
@@ -9,7 +19,7 @@ defmodule Atol.FiscalStorages.FiscalStorage do
             live_phase: "fiscalMode",
             ffd_version: "1.05",
             fn_ffd_version: "1.0",
-            validity_date: "2022-04-15T21:00:00+03:00",
+            validity_date: "2050-04-15T21:00:00+03:00",
             warnings: nil
 
   use ExConstructor

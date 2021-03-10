@@ -7,13 +7,21 @@ defmodule Atol.Shifts.Shift do
             number: 1,
             state: "closed"
 
+  @type t :: %__MODULE__{
+          operator: String.t(),
+          number: integer,
+          state: String.t()
+        }
+
   use ExConstructor
 
+  @spec get() :: Shift.t()
   def get() do
     Storage.get(:shift)
     |> Shift.new()
   end
 
+  @spec update(map) :: map
   def update(data) do
     data
     |> Shift.new()
@@ -22,6 +30,7 @@ defmodule Atol.Shifts.Shift do
     data
   end
 
+  @spec open(String.t()) :: Shift.t()
   def open(operator) do
     Shift.new(%{
       operator: operator,
@@ -30,6 +39,7 @@ defmodule Atol.Shifts.Shift do
     })
   end
 
+  @spec close(Shift.t()) :: Shift.t()
   def close(shift) do
     shift
     |> Shift.new()
