@@ -1,4 +1,8 @@
 defmodule Atol.Storage.Fixtures do
+  @moduledoc """
+  Модуль реализует загрузку фикстур при настройке приложения
+  """
+
   alias Atol.Storage.Fixtures.{Device, FiscalStorage, Shift}
 
   @doc """

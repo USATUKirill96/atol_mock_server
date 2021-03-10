@@ -1,5 +1,10 @@
 defmodule Dashboard.Consumer do
-  @moduledoc false
+  @moduledoc """
+    entry-point для событий из шины данных.
+
+    При запуске подписывается на события, которые нужно отразить в панели управления.
+    При получении события форматирует его и сохраняет
+  """
 
   use GenServer
 

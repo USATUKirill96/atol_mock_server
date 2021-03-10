@@ -1,4 +1,8 @@
 defmodule Atol.FiscalStorages.Schema do
+  @moduledoc """
+  Функции преобразования структур модуля в задачи
+  """
+
   alias Atol.FiscalStorages.FiscalStorage
 
   @spec get_fn_info(FiscalStorage.t()) :: map

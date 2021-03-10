@@ -1,4 +1,16 @@
 defmodule Atol.Storage do
+  @moduledoc """
+  Получение и обновление данных хранилища
+
+  ## Examples
+
+      iex> Atol.Storage.update(:foo, "buzz")
+      :ok
+
+      iex> Atol.Storage.get(:foo)
+      "buzz"
+  """
+
   alias Atol.Storage.Server
 
   # API для обращения к хранилищу данных

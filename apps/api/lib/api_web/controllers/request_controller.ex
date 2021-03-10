@@ -1,4 +1,12 @@
 defmodule ApiWeb.RequestController do
+  @moduledoc """
+    Взаимодействие с реквестами от клиента
+
+    Клиентское приложение передает JSON команды вида %{"request" => %{"type" => `type`}, "uuid" => uuid}
+    Контроллер роутит команду на бизнес-логику в зависимости от значения `type`, а также валидирует данные
+    согласно схеме команды
+  """
+
   use ApiWeb, :controller
   require Logger
   alias Atol.{Checks, Devices, FiscalStorages, Reports, Shifts}

@@ -1,17 +1,6 @@
 defmodule Atol.Checks do
   @moduledoc """
     Создание асинхронных задач, реализующих логику работы сервера с чеками
-
-    ## Examples
-
-      iex> Atol.Checks.sell(1)
-      :ok
-
-      iex> Atol.Checks.sell_return(2)
-      :ok
-
-      iex> Atol.Checks.sell(3)
-      :ok
   """
 
   alias Atol.Checks.Server

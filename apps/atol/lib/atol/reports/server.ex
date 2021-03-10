@@ -1,4 +1,6 @@
 defmodule Atol.Reports.Server do
+  @moduledoc false
+
   use GenServer
 
   # Service functions

@@ -1,4 +1,6 @@
 defmodule ApiWeb.Settings.ShiftController do
+  @moduledoc false
+
   use ApiWeb, :controller
 
   def index(conn, _params) do

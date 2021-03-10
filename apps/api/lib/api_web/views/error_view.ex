@@ -1,4 +1,6 @@
 defmodule ApiWeb.ErrorView do
+  @moduledoc false
+
   use ApiWeb, :view
 
   # If you want to customize a particular status code

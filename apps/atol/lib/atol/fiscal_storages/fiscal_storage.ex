@@ -1,4 +1,8 @@
 defmodule Atol.FiscalStorages.FiscalStorage do
+  @moduledoc """
+  Структура фискального накопителя и функции её получения/обновления
+  """
+
   alias __MODULE__
   alias Atol.Storage
 

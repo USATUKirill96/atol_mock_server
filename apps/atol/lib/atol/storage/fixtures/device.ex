@@ -1,4 +1,6 @@
 defmodule Atol.Storage.Fixtures.Device do
+  @moduledoc false
+
   def get() do
     {:device,
      %{

@@ -1,4 +1,6 @@
 defmodule Atol.Devices.Server do
+  @moduledoc false
+
   use GenServer
   alias Atol.Devices.{Device, Parameters, Info, Schema}
 

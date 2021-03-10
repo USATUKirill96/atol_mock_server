@@ -1,4 +1,8 @@
 defmodule Atol.Reports do
+  @moduledoc """
+  Создание задач печати отчетов
+  """
+
   alias Atol.Reports.Server
 
   @spec print_report_x(integer) :: :ok

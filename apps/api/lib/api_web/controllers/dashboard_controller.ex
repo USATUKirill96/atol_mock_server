@@ -1,4 +1,10 @@
 defmodule ApiWeb.DashboardController do
+  @moduledoc """
+    Дашборд служит для предоставления информации о состоянии устройства ККТ
+
+    Он выводит информацию о поступивших запросах от клиентской стороны, а также возникших ошибках
+  """
+
   use ApiWeb, :controller
   require Logger
 
@@ -11,7 +17,11 @@ defmodule ApiWeb.DashboardController do
     |> render("dashboard.html", events: events)
   end
 
-  defp match_event_color(action) do
+  @spec match_event_color(Dashboard.Action.t()) :: %{
+          action: Dashboard.Action.t(),
+          color: String.t()
+        }
+  def match_event_color(action) do
     rules = %{api_events: "#bdf2bb", errors: "#fe7f66"}
 
     %{action: action, color: rules[action.type]}

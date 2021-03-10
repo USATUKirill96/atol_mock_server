@@ -1,4 +1,8 @@
 defmodule Atol.Shifts.Status do
+  @moduledoc """
+  Структура статуса смены и логика работы с ним
+  """
+
   alias __MODULE__
   alias Atol.Shifts.Shift
 

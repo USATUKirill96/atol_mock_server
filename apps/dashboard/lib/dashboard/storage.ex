@@ -1,4 +1,6 @@
 defmodule Dashboard.Storage do
+  @moduledoc false
+
   alias Dashboard.Action
   use GenServer
 

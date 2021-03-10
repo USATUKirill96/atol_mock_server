@@ -1,4 +1,8 @@
 defmodule Atol.FiscalStorages do
+  @moduledoc """
+  Получение и обновление настроек фискального накопителя
+  """
+
   alias Atol.FiscalStorages.{Server, FiscalStorage}
 
   @spec get_info(integer) :: :ok

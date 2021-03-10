@@ -1,4 +1,12 @@
 defmodule ApiWeb.ResultController do
+  @moduledoc """
+    Взаимодействие с клиентом для предоставления результата
+
+    При создании задачи клиент указывает уникальный uuid, по которому будет получать результат.
+    Из uuid формируется путь, по которому клиентское приложение запрашивает данные.
+    Пример: http://localhost:63342/requests/08243561
+  """
+
   use ApiWeb, :controller
   alias Atol.Tasks
   alias EventBus.Model.Event

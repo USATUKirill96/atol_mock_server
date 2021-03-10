@@ -1,4 +1,6 @@
 defmodule ApiWeb.Settings.DeviceController do
+  @moduledoc false
+
   use ApiWeb, :controller
   alias Atol.Devices
 

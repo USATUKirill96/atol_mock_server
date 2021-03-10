@@ -1,4 +1,8 @@
 defmodule Atol.Shifts do
+  @moduledoc """
+  Получение и обновление информации о смене, а также создание асинхронных задач выполнения логики работы сервера
+  """
+
   alias Atol.Shifts.{Server, Shift}
   alias Atol.Storage
 

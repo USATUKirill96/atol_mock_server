@@ -1,4 +1,7 @@
 defmodule Atol.Devices do
+  @moduledoc """
+    Получение и обновление настроек устройства
+  """
   alias Atol.Devices.{Server, Device}
 
   @spec get_info(integer) :: :ok

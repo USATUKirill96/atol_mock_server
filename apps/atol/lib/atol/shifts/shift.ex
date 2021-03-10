@@ -1,4 +1,8 @@
 defmodule Atol.Shifts.Shift do
+  @moduledoc """
+  Структура смены и логика работы с ней
+  """
+
   alias __MODULE__
   require Logger
   alias Atol.Storage

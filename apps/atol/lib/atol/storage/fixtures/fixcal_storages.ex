@@ -1,4 +1,6 @@
 defmodule Atol.Storage.Fixtures.FiscalStorage do
+  @moduledoc false
+
   def get() do
     {:fiscal_storage,
      %{

@@ -1,4 +1,8 @@
 defmodule Atol.Devices.Info do
+  @moduledoc """
+  Структура информации об устройстве и логика её формирования
+  """
+
   alias __MODULE__
   alias Atol.Devices.Device
 

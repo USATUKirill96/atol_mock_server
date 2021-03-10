@@ -1,4 +1,8 @@
 defmodule Atol.Devices.Schema do
+  @moduledoc """
+  Формирование задачи для возвращения клиенту через API из структур модуля
+  """
+
   alias Atol.Devices.{Device, Info}
 
   @spec get_parameters(Device.t(), list(integer)) :: map

@@ -1,4 +1,6 @@
 defmodule Atol.Storage.Fixtures.Shift do
+  @moduledoc false
+
   def get() do
     {:shift,
      %{

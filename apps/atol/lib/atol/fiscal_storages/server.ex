@@ -1,4 +1,6 @@
 defmodule Atol.FiscalStorages.Server do
+  @moduledoc false
+
   use GenServer
   alias Atol.FiscalStorages.{FiscalStorage, Schema}
 

@@ -1,4 +1,6 @@
 defmodule ApiWeb.Settings.FiscalStorageController do
+  @moduledoc false
+
   use ApiWeb, :controller
   alias Atol.FiscalStorages
 

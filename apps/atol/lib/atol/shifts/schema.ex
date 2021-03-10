@@ -1,4 +1,8 @@
 defmodule Atol.Shifts.Schema do
+  @moduledoc """
+  Преобразование информации о смене в задачи для получения клиентом
+  """
+
   alias Atol.Shifts.{Shift, Status}
 
   @spec from_shift(Shift.t()) :: map

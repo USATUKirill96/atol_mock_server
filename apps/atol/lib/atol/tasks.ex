@@ -1,4 +1,8 @@
 defmodule Atol.Tasks do
+  @moduledoc """
+  Управление очередью задач
+  """
+
   use Agent
 
   def start_link(_) do
