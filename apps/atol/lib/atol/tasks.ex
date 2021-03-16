@@ -5,7 +5,7 @@ defmodule Atol.Tasks do
 
   @spec sell_check(String.t()) :: :ok
   def sell_check(uuid) do
-   Check.cast({:sell, uuid})
+    Check.cast({:sell, uuid})
   end
 
   @spec sell_return_check(String.t()) :: :ok

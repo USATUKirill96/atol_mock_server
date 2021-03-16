@@ -1,27 +1,52 @@
 defmodule ChecksTest do
+  alias Atol.Checks.{Check, Schema, FiscalParams}
   use ExUnit.Case
 
-  setup do
-    children = [
-      Atol.Checks.Server,
-      Atol.Shifts.Server,
-      Atol.Tasks
-    ]
+  test "sell" do
+    _check =
+      %Atol.Shifts.Shift{}
+      |> Check.sell()
 
-    start_supervised(children)
-    :ok
+    expected_result = %Check{
+      fiscal_params: %FiscalParams{},
+      warnings: nil
+    }
+
+    assert _check = expected_result
   end
 
-  test "check_sell" do
+  test "sell_return" do
+    _check =
+      %Atol.Shifts.Shift{}
+      |> Check.sell_return()
 
-    uuid = UUID.uuid4()
+    expected_result = %Check{
+      fiscal_params: %FiscalParams{},
+      warnings: nil
+    }
 
-    Atol.Checks.sell(uuid)
+    assert _check = expected_result
+  end
 
-    result = Atol.Tasks.pop(uuid)
+  test "schema_from_check" do
+    _schema =
+      %Atol.Shifts.Shift{}
+      |> Check.sell()
+      |> Schema.from_check()
 
-    :timer.sleep(1000)
+    expected_result = %{
+      "warnings" => [],
+      "fiscal_params" => %{}
+    }
 
-    assert result != nil
+    assert _schema = expected_result
+  end
+
+  test "schema_continue_print" do
+    _schema = Schema.continue_print()
+
+    expected_result = %{result: "ok"}
+
+    assert _schema = expected_result
   end
 end

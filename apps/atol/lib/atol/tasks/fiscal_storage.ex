@@ -12,11 +12,9 @@ defmodule Atol.Tasks.FiscalStorage do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
-
   def init([]) do
     {:ok, []}
   end
-
 
   def handle_cast({:get_info, uuid}, state) do
     Storage.get(:fiscal_storage)
@@ -27,9 +25,7 @@ defmodule Atol.Tasks.FiscalStorage do
     {:noreply, state}
   end
 
-
   def cast(args) do
     GenServer.cast(__MODULE__, args)
   end
-
 end

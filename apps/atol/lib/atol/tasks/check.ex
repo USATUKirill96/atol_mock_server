@@ -16,27 +16,27 @@ defmodule Atol.Tasks.Check do
 
   def handle_cast({:sell, uuid}, state) do
     Storage.get(:shift)
-    |>Shifts.Shift.get()
-    |>Checks.Check.sell()
-    |>Checks.Schema.from_check()
-    |>Queue.add(uuid)
+    |> Shifts.Shift.get()
+    |> Checks.Check.sell()
+    |> Checks.Schema.from_check()
+    |> Queue.add(uuid)
 
     {:noreply, state}
   end
 
   def handle_cast({:return, uuid}, state) do
     Storage.get(:shift)
-    |>Shifts.Shift.get()
-    |>Checks.Check.sell_return()
-    |>Checks.Schema.from_check()
-    |>Queue.add(uuid)
+    |> Shifts.Shift.get()
+    |> Checks.Check.sell_return()
+    |> Checks.Schema.from_check()
+    |> Queue.add(uuid)
 
     {:noreply, state}
   end
 
   def handle_cast({:continue, uuid}, state) do
     Checks.Schema.continue_print()
-    |>Queue.add(uuid)
+    |> Queue.add(uuid)
 
     {:noreply, state}
   end
@@ -46,5 +46,4 @@ defmodule Atol.Tasks.Check do
   def cast(args) do
     GenServer.cast(__MODULE__, args)
   end
-
 end

@@ -40,7 +40,8 @@ defmodule Dashboard.Action do
   @spec from_storage(list({Time.t(), Action.t()})) :: list(Action.t())
   def from_storage(storage_data) do
     list = for {_time, data} <- storage_data, do: data
+
     Enum.sort_by(list, fn action -> action.time end)
-    |>Enum.reverse()
+    |> Enum.reverse()
   end
 end

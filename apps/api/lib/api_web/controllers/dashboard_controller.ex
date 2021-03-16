@@ -29,6 +29,7 @@ defmodule ApiWeb.DashboardController do
 
   def create(conn, _params) do
     Dashboard.clean()
+
     conn
     |> put_flash(:info, "Логи очищены")
     |> redirect(to: "/")
