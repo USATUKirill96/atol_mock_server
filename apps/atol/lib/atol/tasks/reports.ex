@@ -1,5 +1,5 @@
-defmodule Atol.Reports.Server do
-  @moduledoc false
+defmodule Atol.Tasks.Reports do
+  alias Atol.Tasks.Queue
 
   use GenServer
 
@@ -12,16 +12,10 @@ defmodule Atol.Reports.Server do
     {:ok, []}
   end
 
-  # Server
+  def handle_cast({:print_report_x, uuid}, state) do
+    Queue.add(%{"status" => "ok"}, uuid)
 
-  def handle_cast({:printReportX, uuid}, state) do
-    Atol.Tasks.add(%{result: "fine"}, uuid)
     {:noreply, state}
-  end
-
-  # Client
-  def call(args) do
-    GenServer.call(__MODULE__, args)
   end
 
   def cast(args) do

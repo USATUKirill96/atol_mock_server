@@ -4,18 +4,19 @@ defmodule Atol.Application do
   @moduledoc false
 
   use Application
-  alias Atol.{Checks, Devices, FiscalStorages, Reports, Shifts, Tasks, Storage}
+  alias Atol.Storage
+  alias Atol.Tasks.{Check, Device, FiscalStorage, Queue, Reports, Shift}
 
   @impl true
   def start(_type, _args) do
     children = [
-      Checks.Server,
-      Devices.Server,
-      FiscalStorages.Server,
-      Reports.Server,
-      Shifts.Server,
       Storage.Server,
-      Tasks
+      Check,
+      Device,
+      FiscalStorage,
+      Queue,
+      Reports,
+      Shift
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

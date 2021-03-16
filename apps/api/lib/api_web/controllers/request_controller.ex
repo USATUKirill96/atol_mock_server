@@ -9,7 +9,7 @@ defmodule ApiWeb.RequestController do
 
   use ApiWeb, :controller
   require Logger
-  alias Atol.{Checks, Devices, FiscalStorages, Reports, Shifts}
+  alias Atol.Tasks
   alias EventBus.Model.Event
 
   plug :validate_request
@@ -18,7 +18,6 @@ defmodule ApiWeb.RequestController do
     route(params)
 
     conn
-    |> put_status(200)
     |> json(%{"status" => "ok"})
   end
 
@@ -53,17 +52,17 @@ defmodule ApiWeb.RequestController do
     create_event(params, :api_events)
 
     case type do
-      "getShiftStatus" -> Shifts.get_status(uuid)
-      "getFnInfo" -> FiscalStorages.get_info(uuid)
-      "getDeviceInfo" -> Devices.get_info(uuid)
-      "getDeviceParameters" -> Devices.get_parameters(uuid, keys(params))
-      "setDeviceParameters" -> Devices.set_parameters(uuid, device_parameters(params))
-      "sell" -> Checks.sell(uuid)
-      "sellReturn" -> Checks.sell_return(uuid)
-      "continuePrint" -> Checks.continue_print(uuid)
-      "reportX" -> Reports.print_report_x(uuid)
-      "openShift" -> Shifts.open(uuid, name(params))
-      "closeShift" -> Shifts.close(uuid)
+      "getShiftStatus" -> Tasks.get_shift_status(uuid)
+      "getFnInfo" -> Tasks.get_fiscal_storage_info(uuid)
+      "getDeviceInfo" -> Tasks.get_device_info(uuid)
+      "getDeviceParameters" -> Tasks.get_device_parameters(uuid, keys(params))
+      "setDeviceParameters" -> Tasks.set_device_parameters(uuid, device_parameters(params))
+      "sell" -> Tasks.sell_check(uuid)
+      "sellReturn" -> Tasks.sell_return_check(uuid)
+      "continuePrint" -> Tasks.continue_print_check(uuid)
+      "reportX" -> Tasks.print_report_x(uuid)
+      "openShift" -> Tasks.open_shift(uuid, name(params))
+      "closeShift" -> Tasks.close_shift(uuid)
       _ -> Logger.warning("Неизвестный запрос")
     end
   end

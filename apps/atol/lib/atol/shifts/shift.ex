@@ -19,19 +19,10 @@ defmodule Atol.Shifts.Shift do
 
   use ExConstructor
 
-  @spec get() :: Shift.t()
-  def get() do
-    Storage.get(:shift)
-    |> Shift.new()
-  end
-
-  @spec update(map) :: map
-  def update(data) do
+  @spec get(map) :: Shift.t()
+  def get(data) do
     data
     |> Shift.new()
-    |> Storage.update(:shift)
-
-    data
   end
 
   @spec open(String.t()) :: Shift.t()

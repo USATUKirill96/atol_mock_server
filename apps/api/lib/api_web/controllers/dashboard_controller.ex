@@ -26,4 +26,11 @@ defmodule ApiWeb.DashboardController do
 
     %{action: action, color: rules[action.type]}
   end
+
+  def create(conn, _params) do
+    Dashboard.clean()
+    conn
+    |> put_flash(:info, "Логи очищены")
+    |> redirect(to: "/")
+  end
 end

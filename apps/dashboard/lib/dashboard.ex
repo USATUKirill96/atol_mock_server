@@ -13,4 +13,8 @@ defmodule Dashboard do
     Dashboard.Storage.get()
     |> Dashboard.Action.from_storage()
   end
+
+  def clean do
+    Dashboard.Storage.clean()
+  end
 end

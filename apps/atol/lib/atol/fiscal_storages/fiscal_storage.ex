@@ -28,8 +28,8 @@ defmodule Atol.FiscalStorages.FiscalStorage do
 
   use ExConstructor
 
-  def get() do
-    Storage.get(:fiscal_storage)
+  def get(data) do
+    data
     |> FiscalStorage.new()
   end
 

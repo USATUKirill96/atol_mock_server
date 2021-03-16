@@ -2,10 +2,9 @@ defmodule ApiWeb.Settings.FiscalStorageController do
   @moduledoc false
 
   use ApiWeb, :controller
-  alias Atol.FiscalStorages
 
   def index(conn, _params) do
-    data = %{settings: FiscalStorages.get(), meta: FiscalStorages.live_phases()}
+    data = %{settings: Atol.get_fiscal_storage(), meta: Atol.FiscalStorages.LivePhases.get()}
 
     conn
     |> render("fiscal_storage.html", data: data)
@@ -14,7 +13,7 @@ defmodule ApiWeb.Settings.FiscalStorageController do
   def create(conn, params) do
     # Сохранить настройки
     params
-    |> FiscalStorages.update()
+    |> Atol.update_fiscal_storage()
 
     # Вернуть ответ пользователю
     conn

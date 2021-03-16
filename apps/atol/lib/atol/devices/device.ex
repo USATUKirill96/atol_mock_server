@@ -19,33 +19,9 @@ defmodule Atol.Devices.Device do
   @doc """
   Получить из хранилища информацию об устройстве
   """
-  @spec get() :: Device.t()
-  def get() do
-    Storage.get(:device)
+  @spec get(map) :: Device.t()
+  def get(device_data) do
+    device_data
     |> Device.new()
-  end
-
-  @doc """
-    Обновить информацию об устройстве в хранилище
-  """
-  @spec update(map) :: map
-  def update(state) do
-    state
-    |> Device.new()
-    |> Storage.update(:device)
-
-    state
-  end
-
-  @doc """
-  Обновить конкретное поле информации об устройстве в хранилище
-  """
-  @spec update(any, atom) :: any
-  def update(value, field) do
-    %{Storage.get(:device) | field => value}
-    |> Device.new()
-    |> Storage.update(:device)
-
-    value
   end
 end

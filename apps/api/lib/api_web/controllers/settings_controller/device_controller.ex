@@ -2,10 +2,9 @@ defmodule ApiWeb.Settings.DeviceController do
   @moduledoc false
 
   use ApiWeb, :controller
-  alias Atol.Devices
 
   def index(conn, _params) do
-    device = Devices.get()
+    device = Atol.get_device()
 
     params = %{
       serial: device.serial,
@@ -18,14 +17,14 @@ defmodule ApiWeb.Settings.DeviceController do
   end
 
   def create(conn, params) do
-    device = Devices.get()
+    device = Atol.get_device()
 
     # Обновить настройки устройства
     %{
       serial: params["serial"],
       parameters: %{device.parameters | 122 => params["cashier"], 150 => params["vatin"]}
     }
-    |> Devices.update()
+    |> Atol.update_device()
 
     # Вернуть ответ пользователю
     conn

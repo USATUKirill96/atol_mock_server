@@ -1,5 +1,9 @@
 <h2>Домашнаяя страница </h2>
 
+<%= form_for @conn, Routes.dashboard_path(@conn, :create), [method: :post], fn f -> %>
+    <%= submit "Очистить" %>
+<% end %>
+
 <%= for event <- @events do %>
     <div style="background-color: <%= event.color %> ; padding: 10px; border: 1px solid black;">
         <b>Время</b>: <%= event.action.time %>

@@ -4,7 +4,7 @@ defmodule ApiWeb.Settings.ShiftController do
   use ApiWeb, :controller
 
   def index(conn, _params) do
-    shift = Atol.Shifts.get()
+    shift = Atol.get_shift()
 
     conn
     |> render("shift.html", shift: shift)
@@ -17,8 +17,7 @@ defmodule ApiWeb.Settings.ShiftController do
       |> Map.pop("_csrf_token")
 
     data
-    |> Atol.Shifts.Shift.new()
-    |> Atol.Shifts.update()
+    |> Atol.update_shift()
 
     # Вернуть ответ пользователю
     conn

@@ -18,7 +18,7 @@ defmodule ApiWeb.Router do
   # KKT Dashboard
   scope "/", ApiWeb do
     pipe_through :browser
-    get "/", DashboardController, :index
+    resources "/", DashboardController, only: [:index, :create]
   end
 
   # KKT Settings

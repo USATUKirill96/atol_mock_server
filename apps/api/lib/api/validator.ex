@@ -31,9 +31,7 @@ defmodule Api.Validator do
     %{"request" => %{"type" => :string, "keys" => [:list, :int]}, "uuid" => :string}
   end
 
-  def get_schema(%{"request" => %{"type" => "setDeviceParameters"}} = params) do
-    IO.inspect(params, label: "Что в параметрах для схемы")
-
+  def get_schema(%{"request" => %{"type" => "setDeviceParameters"}}) do
     %{
       "request" => %{"deviceParameters" => [:list, :map, &device_parameters/0], "type" => :string},
       "uuid" => :string

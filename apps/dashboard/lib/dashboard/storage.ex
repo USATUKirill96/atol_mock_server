@@ -25,6 +25,11 @@ defmodule Dashboard.Storage do
     {:noreply, state}
   end
 
+  def handle_cast(:clean, state) do
+    :ets.delete_all_objects(__MODULE__)
+    {:noreply, state}
+  end
+
   # Client
   def call(args) do
     GenServer.call(__MODULE__, args)
@@ -43,5 +48,10 @@ defmodule Dashboard.Storage do
   @spec add(Action.t()) :: :ok
   def add(data) do
     cast({:add, data})
+  end
+
+  @spec clean() :: :ok
+  def clean() do
+    cast(:clean)
   end
 end
