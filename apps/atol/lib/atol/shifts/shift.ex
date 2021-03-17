@@ -7,7 +7,7 @@ defmodule Atol.Shifts.Shift do
   require Logger
   alias Atol.Storage
 
-  defstruct operator: "John Doel",
+  defstruct operator: "John Doe",
             number: 1,
             state: "closed"
 

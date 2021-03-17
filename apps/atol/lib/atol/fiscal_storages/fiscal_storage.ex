@@ -28,14 +28,9 @@ defmodule Atol.FiscalStorages.FiscalStorage do
 
   use ExConstructor
 
+  @spec get(map) :: FiscalStorage.t()
   def get(data) do
     data
     |> FiscalStorage.new()
-  end
-
-  def update(fiscal_storage_Settings) do
-    fiscal_storage_Settings
-    |> FiscalStorage.new()
-    |> Storage.update(:fiscal_storage)
   end
 end

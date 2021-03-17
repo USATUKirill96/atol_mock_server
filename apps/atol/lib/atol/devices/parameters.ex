@@ -12,18 +12,7 @@ defmodule Atol.Devices.Parameters do
   @spec update(Device.t(), list(map)) :: map
   def update(device, input_data) do
     # Обновить параметры устройства
-    device.parameters
-    |> update_req(input_data)
-  end
-
-  @spec update_req(map, list(map)) :: map
-  defp update_req(parameters, []) do
-    parameters
-  end
-
-  defp update_req(parameters, [head | tail]) do
-    parameters
-    |> Map.put(head["key"], head["value"])
-    |> update_req(tail)
+    input_data
+    |> Enum.reduce(device.parameters, fn(data, parameters) -> Map.put(parameters, data["key"], data["value"]) end)
   end
 end
