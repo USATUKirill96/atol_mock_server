@@ -24,7 +24,7 @@ defmodule Api.MixProject do
   def application do
     [
       mod: {Api.Application, []},
-      extra_applications: [:logger, :runtime_tools, :event_bus, :atol, :dashboard]
+      extra_applications: [:logger, :runtime_tools, :event_bus, :atol, :dashboard],
     ]
   end
 
@@ -47,6 +47,9 @@ defmodule Api.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:corsica, "~> 1.0"},
+      {:atol, in_umbrella: true},
+      {:dashboard, in_umbrella: true},
+
 
       # Генерация ID для шины данных
       {:uuid, "~> 1.1"},
@@ -65,7 +68,7 @@ defmodule Api.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "cmd npm install --prefix assets"]
+      api_setup: ["deps.get", "cmd npm install --prefix assets"]
     ]
   end
 end

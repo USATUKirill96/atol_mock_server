@@ -9,7 +9,8 @@ defmodule AtolServer.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
-      dialyzer: [plt_add_apps: [:mix]]
+      dialyzer: [plt_add_apps: [:mix]],
+      releases: releases()
     ]
   end
 
@@ -25,6 +26,24 @@ defmodule AtolServer.MixProject do
   defp aliases do
     [
       setup: "load_fixtures"
+    ]
+  end
+
+  defp releases do
+    [
+      atol_server: [
+        applications: [
+          api: :permanent,
+          atol: :permanent,
+          dashboard: :permanent
+        ]
+      ]
+    ]
+  end
+
+  def application do
+    [
+      mod: {Atol.Application, []}
     ]
   end
 end
