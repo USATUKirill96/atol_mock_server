@@ -38,12 +38,11 @@ defmodule ApiWeb.Router do
     get "/*uuid", ResultController, :index
   end
 
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  # Phoenix dashboard
+  import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through :browser
-      live_dashboard "/dashboard", metrics: ApiWeb.Telemetry
-    end
+  scope "/" do
+    pipe_through :browser
+    live_dashboard "/dashboard", metrics: ApiWeb.Telemetry
   end
 end

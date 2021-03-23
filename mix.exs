@@ -17,7 +17,7 @@ defmodule AtolServer.MixProject do
   defp deps do
     [
       # Анализ кода
-      {:dialyxir, "~> 0.4", only: [:dev]},
+      {:dialyxir, "~> 0.4", only: :dev},
       # Рендеринг документации
       {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]

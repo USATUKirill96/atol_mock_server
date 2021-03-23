@@ -26,3 +26,4 @@ erl_crash.dump
 disk_storage
 mix.lock
 atol_server.iml
+apps/api/config/prod.secret.exs

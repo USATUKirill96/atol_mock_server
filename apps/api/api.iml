@@ -65,5 +65,7 @@
     <orderEntry type="library" name="unicode_set" level="project" />
     <orderEntry type="library" name="benchee" level="project" />
     <orderEntry type="library" name="benchee_markdown" level="project" />
+    <orderEntry type="module" module-name="atol" />
+    <orderEntry type="module" module-name="dashboard" />
   </component>
 </module>

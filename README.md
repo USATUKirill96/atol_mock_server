@@ -1,33 +1,52 @@
 # AtolServer
 
-Provides API for ATOL cash machines software development
+Мок-сервер для разработки приложений под Атол ККТ
 
-Developing software for ATOL cash machines requires two things:
-1. Cash machine itself
-2. ATOL web-server, that only works on OS Windows
+# Возможности
+- Имитация работы сервера Атол на любой операционной системе
+- Разработка приложения не требует наличия у программиста устройства ККТ
+- Валидация входных данных, отображение ошибок в интерфейсе пользователя
+- Логгирование запросов и отображение в панели запросов
+- Кастомизация настроек устройства
+- Работа со сменами, хранение текущего состояния смены
 
-Mock-server simplifies development process. Any OS available, no physical cash machine required
+# Интерфейс сервера
 
-### Requirements:
+### Панель запросов на сервер
+![](docs/dashboard.png?raw=true)
+
+### Панель настроек
+![](docs/settings.png?raw=true)
+
+# Запуск в докер-контейнере:
+[Ссылка на образ](https://hub.docker.com/r/aarondelarge/atol_mock_server)
+
+Запуск:
+```
+docker run --name atol_mock_server -p 16732:16732 aarondelarge/atol_mock_server:latest
+```
+
+# Локальная сборка
+### Требования:
 ```
 Elixir 1.11.2 (compiled with Erlang/OTP 23)
+Nodejs ~ 15.11.0 (Подойдет актуальная стабильная версия)
 ```
 
-### Installation
-1. Get and compile dependencies by 
+### Установка
+1. Загрузите и скомпилируйте зависимости
 ```
 mix deps.get
 mix peps.compile
 ```
-2. Collect statics by
+2. Соберите статику
 ```
-cd apps/api/assets
-npm install
+npm install --prefix ./apps/api/assets
 ```
-3. Start server by
+3. Запустите сервер в режиме разработчика
 ```
 mix phx.server
 ```
 
-### Web-interface
-Open http://localhost:16732/ to customize API response
+### Веб-интерфейс
+Откройте *http://localhost:16732/* для кастомизации настроек сервера, а также работы с панелью запросов
